@@ -25,6 +25,7 @@ import frc.robot.subsystems.Gimbal;
 import frc.robot.subsystems.algae;
 import frc.robot.commands.levels;
 import frc.robot.commands.levelsecondbase;
+import frc.robot.commands.llaligntoreef;
 import frc.robot.limelight.Limelight3DDistance;
 import frc.robot.sensor.algaesense;
 import frc.robot.sensor.metal;
@@ -32,6 +33,7 @@ import frc.robot.commands.CoralIntakeCmd;
 import frc.robot.commands.Gimbalcmd;
 import frc.robot.commands.algaeintaketime;
 import frc.robot.commands.alignStation;
+import frc.robot.commands.elevatorcmd;
 
 public class RobotContainer {
 
@@ -66,11 +68,14 @@ public class RobotContainer {
     
     NamedCommands.registerCommand("Algae_in", new algaeintaketime(algae,2)); 
     NamedCommands.registerCommand("Gim_L3", new Gimbalcmd(gimbal, 185));
+    NamedCommands.registerCommand("Ele_L4", new elevatorcmd(elevator, 57));
+    NamedCommands.registerCommand("Coral-out", new CoralIntakeCmd(coral, -0.6));
+    NamedCommands.registerCommand("Coral-in", new CoralIntakeCmd(coral, 0.5));
+    NamedCommands.registerCommand("Ele_ground", new elevatorcmd(elevator, 5));
 
     autoChooser = AutoBuilder.buildAutoChooser("fwd");
     SmartDashboard.putData("Auto Chooser", autoChooser);
 
-    // NamedCommands.registerCommand("aligntoreef", new llaligntoreef(aprilDistance, m_robotDrive));
     // NamedCommands.registerCommand("aligntostation", new alignStation(aprilDistance, m_robotDrive));
     // NamedCommands.registerCommand("Ele_L4", new elevatorcmd(elevator, 63));
     // NamedCommands.registerCommand("Ele_L3", new elevatorcmd(elevator, 30));
@@ -115,20 +120,20 @@ public class RobotContainer {
   
     /*Mechanism Control for Driver 2*/
 
-    //POV for Elevator position 
+    // POV for Elevator position 
     //ground
     new POVButton(Driver_2, 180).onTrue(
       new levels(elevator, gimbal, 3, 100,0.5));
     //L2
     new POVButton(Driver_2, 270).onTrue(
       // new RunCommand(()->elevator.degele(10)));
-      new levelsecondbase(elevator, gimbal, 10, 195, 0.5));
+      new levelsecondbase(elevator, gimbal, 10, 210, 0.5));
     //L3
     new POVButton(Driver_2, 0).onTrue(
-      new levels(elevator, gimbal, 30, 195,0.5));
-    //L4
+      new levels(elevator, gimbal, 25, 210,0.5));
+    // //L4
     new POVButton(Driver_2, 90).onTrue(
-      new levels(elevator, gimbal, 57, 195,0.5));
+      new levels(elevator, gimbal, 63, 200,0.5));
 
     // Coral Presets
     new JoystickButton(Driver_2, Button.kOptions.value)
@@ -155,16 +160,16 @@ public class RobotContainer {
 
 
     //buttonfor coral intake
-    new JoystickButton(Driver_2, Button.kCross.value).onTrue(
+    new JoystickButton(Driver_2, Button.kCircle.value).onTrue(
       new CoralIntakeCmd(coral, 0.7));//Red Right in
     //button for coral outtake
-    new JoystickButton(Driver_2, Button.kCircle.value).whileTrue(
+    new JoystickButton(Driver_2, Button.kCross.value).whileTrue(
       new RunCommand(() -> coral.Take(-0.6),coral)); //blue left out
     
 
     //button for algae intake
-    // new JoystickButton(Driver_2, Button.kSquare.value).whileTrue(
-    //   new RunCommand(() -> algae.Take(-0.6),algae)); // Green  
+    new JoystickButton(Driver_2, Button.kSquare.value).whileTrue(
+      new RunCommand(() -> algae.Take(-0.6),algae)); // Green  
     //button for algae outtake
     new JoystickButton(Driver_2, Button.kTriangle.value).whileTrue(
       new RunCommand(() -> algae.Take(1),algae));//yellow

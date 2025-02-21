@@ -2,16 +2,16 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.algae;
+import frc.robot.subsystems.CoralPlacer;
 
-public class algaeintaketime extends Command{
-    public algae algae_s;
+public class CoralOutCmd extends Command{
+    public CoralPlacer coral_s;
     public Timer timer;
     public double wait;
-    public algaeintaketime(algae Algae, double time){
-      this.algae_s = Algae;
+    public CoralOutCmd(CoralPlacer coral, double time){
+      this.coral_s = coral;
       this.wait = time;
-      addRequirements(Algae);
+      addRequirements(coral);
     }
 
     @Override
@@ -23,13 +23,13 @@ public class algaeintaketime extends Command{
 
     @Override
     public void execute() {
-        algae_s.Take(-0.6);
+        coral_s.Take(-0.6);
 
     }
 
     @Override
     public void end(boolean interrupted) {
-        algae_s.Take(0);
+        coral_s.Take(0);
         timer.stop();
         timer.reset();
 

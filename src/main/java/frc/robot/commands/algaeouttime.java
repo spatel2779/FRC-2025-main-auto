@@ -4,11 +4,11 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.algae;
 
-public class algaeintaketime extends Command{
+public class algaeouttime extends Command{
     public algae algae_s;
     public Timer timer;
     public double wait;
-    public algaeintaketime(algae Algae, double time){
+    public algaeouttime(algae Algae, double time){
       this.algae_s = Algae;
       this.wait = time;
       addRequirements(Algae);
@@ -23,7 +23,7 @@ public class algaeintaketime extends Command{
 
     @Override
     public void execute() {
-        algae_s.Take(-0.6);
+        algae_s.Take(0.6);
 
     }
 

@@ -90,7 +90,7 @@ public class Limelight3DDistance extends SubsystemBase{
         SmartDashboard.putNumber("pitch", botval[3]);
         SmartDashboard.putNumber("yaw", botval[4]);
         SmartDashboard.putNumber("roll", botval[5]);
-        m_robotDrive.drive((botval[2]-0.7)*0.3*0.5*(Constants.DriveConstants.kMaxLimelightSpeedMetersPerSecond*slowval), (-botval[0])*1.2*0.5*(Constants.DriveConstants.kMaxLimelightSpeedMetersPerSecond*slowval), -(botval[4]*0.03), false,true);
+        m_robotDrive.drive(0, (-botval[0])*1.2,0, false,true);
         
         
     }else{

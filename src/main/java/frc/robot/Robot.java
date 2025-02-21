@@ -32,11 +32,11 @@ public class Robot extends TimedRobot {
 
     SmartDashboard.putNumber("Elevator-encoder", m_robotContainer.elevator.encoder.getPosition());
     SmartDashboard.putNumber("Absolute Encoder Gimbal", Math.toDegrees(m_robotContainer.gimbal.encoder.getPosition()));
-    m_robotContainer.elecorr.dio();
+    // m_robotContainer.elecorr.dio();
     
 
     //elevator sensor reset
-    if(!m_robotContainer.elecorr.input.get()){
+    if(!m_robotContainer.elecorr..get()){
       m_robotContainer.elevator.encoder.setPosition(0);
     }
   }
@@ -104,18 +104,15 @@ public class Robot extends TimedRobot {
 
     if(flag == 1){
       if(m_robotContainer.algaeSensor.dio()){
-        SmartDashboard.putBoolean("sensor start?",true );
-        SmartDashboard.putBoolean("sensor start but halted?",false );
+       
 
         m_robotContainer.algae.Take(-0.6);
       }else{
-        SmartDashboard.putBoolean("sensor start but halted?",true );
-        m_robotContainer.algae.Take(0);
+        
       }
     }
     else if(flag ==0){
-      SmartDashboard.putBoolean("sensor start?",false );
-      SmartDashboard.putBoolean("sensor start but halted?",false );
+    
       m_robotContainer.algae.Take(0);
     }
 

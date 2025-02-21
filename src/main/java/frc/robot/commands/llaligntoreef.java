@@ -34,10 +34,10 @@ public class llaligntoreef extends Command {
 
     @Override
     public boolean isFinished() {
-        if (timer.get()>3){
-            return true;
-        }else{
-            return false;
-        }
+        if (timer.get()>3)
+        return true;
+        else
+        return false;
+        
   }
 }

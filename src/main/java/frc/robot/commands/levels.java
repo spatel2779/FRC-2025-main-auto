@@ -34,9 +34,10 @@ public class levels extends Command{
     @Override
     public void execute() {
         gim.gimbaldeg(gimbaldeg);
-        if(timer.get()>time && ((Math.toDegrees(gim.encoder.getPosition())< gimbaldeg +2) && Math.toDegrees(gim.encoder.getPosition())> gimbaldeg-2)){
+        if(timer.get()>time && ((Math.toDegrees(gim.encoder.getPosition())< gimbaldeg +5) && Math.toDegrees(gim.encoder.getPosition())> gimbaldeg-5)){
             ele.ElevDegree(deg);
         }
+        
 
 
 

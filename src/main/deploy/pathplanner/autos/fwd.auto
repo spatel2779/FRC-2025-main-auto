@@ -25,7 +25,19 @@
         {
           "type": "named",
           "data": {
-            "name": "Gim_L3"
+            "name": "Coral-drop"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "back1m"
           }
         },
         {

@@ -52,7 +52,7 @@ public class Elevator extends SubsystemBase{
     public void ElevatorUP(Gimbal gimbal, double R2){
     
 
-        if(gimbal.aenc>70 && gimbal.aenc<228){
+        if(gimbal.aenc>70 && gimbal.aenc<225){
             enc = encoder.getPosition();
             SmartDashboard.putNumber("encoder", enc);
             if (enc<75){
