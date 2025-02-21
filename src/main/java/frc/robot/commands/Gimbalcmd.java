@@ -1,17 +1,18 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.Elevator;
+import frc.robot.subsystems.Gimbal;
 
-public class elevatorcmd extends Command{
-    public Elevator elevator;
-    public double height;
+public class Gimbalcmd extends Command{
+    public Gimbal gimbal;
+    public Integer angle;
 
-    public elevatorcmd(Elevator elevatormove, double move){
-        this.elevator = elevatormove;
-        this.height = move;
+    public Gimbalcmd(Gimbal gim, int deg){
+        this.gimbal = gim;
+        this.angle = deg;
     }
 
+    
     @Override
     public void initialize() {
 
@@ -19,12 +20,11 @@ public class elevatorcmd extends Command{
 
     @Override
     public void execute() {
-        elevator.ElevDegree(height);
+        gimbal.gimbaldeg(angle);
     }
 
     @Override
     public void end(boolean interrupted) {
-        
     }
 
     @Override

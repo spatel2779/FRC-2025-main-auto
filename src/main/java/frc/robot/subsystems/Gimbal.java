@@ -55,7 +55,7 @@ public class Gimbal extends SubsystemBase{
             aenc = encoder.getPosition();
             aenc = Math.toDegrees(aenc);
            
-            if (aenc >20) {
+            if (aenc >10) {
             Gimablmotor.set(-joystick*0.4);
             }else{
                 Gimablmotor.set(0);
@@ -66,7 +66,7 @@ public class Gimbal extends SubsystemBase{
             aenc = encoder.getPosition();
             aenc = Math.toDegrees(aenc);
 
-            if(aenc <=215 && elevator.encoder.getPosition()>10){
+            if(aenc <=225 && elevator.encoder.getPosition()>10){
             Gimablmotor.set(joystick*0.4);
             }
             else if(aenc<180){

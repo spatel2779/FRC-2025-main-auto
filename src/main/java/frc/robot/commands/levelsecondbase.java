@@ -35,7 +35,7 @@ public class levelsecondbase extends Command{
     public void execute() {
         gim.gimbaldeg(gimbaldeg);
         if(timer.get()>time){
-            ele.degele(deg);
+            ele.ElevDegree(deg);
         }
 
 

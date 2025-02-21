@@ -7,19 +7,32 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 2.0
+            "waitTime": 0.5
           }
         },
         {
-          "type": "path",
+          "type": "parallel",
           "data": {
-            "pathName": "fwd1m"
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "fwd1m"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Algae_in"
+                }
+              }
+            ]
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 2.0
+            "waitTime": 0.5
           }
         }
       ]

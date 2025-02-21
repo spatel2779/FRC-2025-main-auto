@@ -7,6 +7,7 @@ package frc.robot;
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
 import com.pathplanner.lib.commands.PathPlannerAuto;
+import com.pathplanner.lib.events.EventTrigger;
 
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.Joystick;
@@ -40,7 +41,9 @@ import frc.robot.limelight.Limelight3DDistance;
 import frc.robot.sensor.algaesense;
 import frc.robot.sensor.metal;
 import frc.robot.commands.CoralIntakeCmd;
+import frc.robot.commands.Gimbalcmd;
 import frc.robot.commands.algaeintakecmd;
+import frc.robot.commands.algaeintaketime;
 import frc.robot.commands.alignStation;
 
 public class RobotContainer {
@@ -48,24 +51,48 @@ public class RobotContainer {
   public final XboxController Driver_1 = new XboxController(0);
   public final XboxController Driver_2 = new XboxController(1);
 
-  public final Elevator elevator = new Elevator();
-  private final DriveSubsystem m_robotDrive = new DriveSubsystem();
-  public final Gimbal gimbal = new Gimbal();
-  public final algae algae = new algae();
-  public final Limelight3DDistance aprilDistance = new Limelight3DDistance();
-  public final CoralPlacer coral = new CoralPlacer();
-  public final metal elecorr = new metal();
-  public final algaesense algaeSensor = new algaesense();
+  public static Elevator elevator;
+  private static DriveSubsystem m_robotDrive ;
+  public static Gimbal gimbal;
+  public static algae algae;
+  public static Limelight3DDistance aprilDistance;
+  public static CoralPlacer coral;
+  public static metal elecorr;
+  public static algaesense algaeSensor;
 
   private final SendableChooser<Command> autoChooser;
   
   //Commands
-  private final alignStation align = new alignStation(coral, elevator, aprilDistance, m_robotDrive);
+  public static alignStation align;
 
   public RobotContainer(){
+    
+    algae = new algae(); 
+    elecorr = new metal();
+    elevator = new Elevator();
+    m_robotDrive = new DriveSubsystem();
+    algaeSensor = new algaesense();
+    gimbal = new Gimbal();
+    coral = new CoralPlacer();
+    aprilDistance = new Limelight3DDistance();
+    align = new alignStation(aprilDistance, m_robotDrive);
+    NamedCommands.registerCommand("Algae_in", new algaeintaketime(algae,2)); 
+
     autoChooser = AutoBuilder.buildAutoChooser("fwd");
     SmartDashboard.putData("Auto Chooser", autoChooser);
-    NamedCommands.registerCommand("aligntoreef", new llaligntoreef(aprilDistance, m_robotDrive));
+
+    // NamedCommands.registerCommand("aligntoreef", new llaligntoreef(aprilDistance, m_robotDrive));
+    // NamedCommands.registerCommand("aligntostation", new alignStation(aprilDistance, m_robotDrive));
+    // NamedCommands.registerCommand("Ele_L4", new elevatorcmd(elevator, 63));
+    // NamedCommands.registerCommand("Ele_L3", new elevatorcmd(elevator, 30));
+    // NamedCommands.registerCommand("Ele_L2", new elevatorcmd(elevator, 10));
+    // NamedCommands.registerCommand("Gim_L4", new Gimbalcmd(gimbal, 185));
+    NamedCommands.registerCommand("Gim_L3", new Gimbalcmd(gimbal, 185));
+    // NamedCommands.registerCommand("Gim_L2", new Gimbalcmd(gimbal, 110));
+    // NamedCommands.registerCommand("Gim_ground", new Gimbalcmd(gimbal, 25));
+
+    new EventTrigger("Algae_in").onTrue(new algaeintaketime(algae, 2));
+    
   
     configureBindings();  
     m_robotDrive.setDefaultCommand(
@@ -97,24 +124,30 @@ public class RobotContainer {
       new JoystickButton(Driver_1, Button.kCross.value)
       .whileTrue(new RunCommand(
         ()-> aprilDistance.reeflimelightB(m_robotDrive, Driver_1.getRightTriggerAxis())));
+    
+    new JoystickButton(Driver_1, Button.kSquare.value)
+    .onTrue(new alignStation(aprilDistance, m_robotDrive));
   
     /*Mechanism Control for Driver 2*/
 
     //POV for Elevator position 
     //ground
     new POVButton(Driver_2, 180).onTrue(
-      new levels(elevator, gimbal, 3, 90,0.5));
+      new levels(elevator, gimbal, 3, 100,0.5));
     //L2
     new POVButton(Driver_2, 270).onTrue(
       // new RunCommand(()->elevator.degele(10)));
-      new levelsecondbase(elevator, gimbal, 10, 185, 0.5));
+      new levelsecondbase(elevator, gimbal, 10, 195, 0.5));
     //L3
     new POVButton(Driver_2, 0).onTrue(
-      new levels(elevator, gimbal, 30, 185,0.5));
+      new levels(elevator, gimbal, 30, 195,0.5));
     //L4
     new POVButton(Driver_2, 90).onTrue(
-      new levels(elevator, gimbal, 63, 185,0.5));
+      new levels(elevator, gimbal, 57, 195,0.5));
 
+    // Coral Presets
+    new JoystickButton(Driver_2, Button.kOptions.value)
+    .onTrue(new RunCommand(()-> gimbal.gimbaldeg(12)));
 
     //manual gimbal control 
     new Trigger(() -> Driver_2.getRightY()<-0.1).whileTrue(
@@ -126,10 +159,10 @@ public class RobotContainer {
 
     //L2 algae intake
     new JoystickButton(Driver_2, Button.kL1.value).onTrue(
-      new RunCommand(()->gimbal.gimbaldeg(100), gimbal));//tested
+      new RunCommand(()->gimbal.gimbaldeg(110), gimbal));//tested
     //L3 algae intake
     new JoystickButton(Driver_2, Button.kR1.value).onTrue(
-      new levels(elevator, gimbal, 25, 100,0.5));//tested
+      new levels(elevator, gimbal, 25, 110,0.5));//tested
 
 
     // new JoystickButton(Driver_1, Button.kSquare.value)

@@ -7,7 +7,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Testing"
+            "pathName": "fwd1m"
           }
         },
         {
@@ -19,19 +19,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Testing4"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.5
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Gim_L3"
+            "pathName": "left1m"
           }
         },
         {
@@ -43,7 +31,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Testing5"
+            "pathName": "right2m"
           }
         },
         {
@@ -55,7 +43,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Testing2"
+            "pathName": "center1m"
           }
         },
         {
@@ -67,7 +55,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Testing3"
+            "pathName": "back1m"
           }
         }
       ]

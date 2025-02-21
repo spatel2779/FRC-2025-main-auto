@@ -15,9 +15,7 @@ public class alignStation extends Command{
     public Timer timer;
     public double temptimer;
 
-    public alignStation(CoralPlacer coralm, Elevator elem, Limelight3DDistance llm1, DriveSubsystem roboDrive){
-        this.coral = coralm;
-        this.ele = elem;
+    public alignStation(Limelight3DDistance llm1, DriveSubsystem roboDrive){
         this.llm = llm1;
         this.m_robotDrive = roboDrive;
     }
@@ -31,29 +29,22 @@ public class alignStation extends Command{
 
     @Override
     public void execute() {
-        llm.updateDistance(m_robotDrive, 0);
+        llm.stationlimelight(m_robotDrive, 1);
         if (timer.get()>2){
             llm.stoprobot(m_robotDrive);
         }
-        ele.L2Control(20);
-        temptimer = timer.get();
-        coral.Take(0.6);
-        if(timer.get()-temptimer > 2){
-            coral.Take(0);
-        }
-
         
     }
 
     @Override
     public void end(boolean interrupted) {
-        ele.L2Control(0);
+        ele.ElevDegree(0);
         
     }
 
     @Override
     public boolean isFinished() {
-    return false;
+    return true;
   }
 
     

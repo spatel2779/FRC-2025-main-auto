@@ -52,7 +52,7 @@ public class Elevator extends SubsystemBase{
     public void ElevatorUP(Gimbal gimbal, double R2){
     
 
-        if(gimbal.aenc>60 && gimbal.aenc<218){
+        if(gimbal.aenc>70 && gimbal.aenc<228){
             enc = encoder.getPosition();
             SmartDashboard.putNumber("encoder", enc);
             if (enc<75){
@@ -69,7 +69,7 @@ public class Elevator extends SubsystemBase{
             }
         }   
     public void ElevatorDown(Gimbal gimbal, double L2){
-        if (gimbal.aenc>60 && gimbal.aenc<218){
+        if (gimbal.aenc>70 && gimbal.aenc<225){
             double enc = encoder.getPosition();
             if (enc>4){
                 LElevator.set(-(L2*0.4));
@@ -90,7 +90,7 @@ public class Elevator extends SubsystemBase{
         RElevator.set(0);
     }
 
-    public void degele(double value){
+    public void ElevDegree(double value){
         double calcdegree = (1000 * value)/17.66;
         LElevatorPID.setReference(Math.toRadians(calcdegree), ControlType.kPosition);         
     }
