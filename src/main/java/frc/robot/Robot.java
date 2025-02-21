@@ -4,23 +4,13 @@
 
 package frc.robot;
 
-import java.time.Year;
-
-import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.Constants.DriveConstants;
-import frc.robot.commands.algaeintakecmd;
 import frc.robot.sensor.algaesense;
-import frc.robot.subsystems.CoralPlacer;
-import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.algae;
 
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
@@ -113,7 +103,7 @@ public class Robot extends TimedRobot {
     }
 
     if(flag == 1){
-      if(algaesense.dio()){
+      if(m_robotContainer.algaeSensor.dio()){
         SmartDashboard.putBoolean("sensor start?",true );
         SmartDashboard.putBoolean("sensor start but halted?",false );
 

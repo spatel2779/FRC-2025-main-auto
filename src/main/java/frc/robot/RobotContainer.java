@@ -6,24 +6,15 @@ package frc.robot;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import com.pathplanner.lib.auto.NamedCommands;
-import com.pathplanner.lib.commands.PathPlannerAuto;
-import com.pathplanner.lib.events.EventTrigger;
 
 import edu.wpi.first.math.MathUtil;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.PS4Controller.Button;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.Commands;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.Subsystem;
-import edu.wpi.first.wpilibj2.command.WaitCommand;
-import edu.wpi.first.wpilibj2.command.button.CommandPS4Controller;
-import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
@@ -32,17 +23,13 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Gimbal;
 import frc.robot.subsystems.algae;
-import frc.robot.Constants.OIConstants;
-import frc.robot.commands.elevatorcmd;
 import frc.robot.commands.levels;
 import frc.robot.commands.levelsecondbase;
-import frc.robot.commands.llaligntoreef;
 import frc.robot.limelight.Limelight3DDistance;
 import frc.robot.sensor.algaesense;
 import frc.robot.sensor.metal;
 import frc.robot.commands.CoralIntakeCmd;
 import frc.robot.commands.Gimbalcmd;
-import frc.robot.commands.algaeintakecmd;
 import frc.robot.commands.algaeintaketime;
 import frc.robot.commands.alignStation;
 
@@ -51,14 +38,14 @@ public class RobotContainer {
   public final XboxController Driver_1 = new XboxController(0);
   public final XboxController Driver_2 = new XboxController(1);
 
-  public static Elevator elevator;
-  private static DriveSubsystem m_robotDrive ;
-  public static Gimbal gimbal;
-  public static algae algae;
-  public static Limelight3DDistance aprilDistance;
-  public static CoralPlacer coral;
-  public static metal elecorr;
-  public static algaesense algaeSensor;
+  public Elevator elevator;
+  private DriveSubsystem m_robotDrive ;
+  public Gimbal gimbal;
+  public algae algae;
+  public Limelight3DDistance aprilDistance;
+  public CoralPlacer coral;
+  public metal elecorr;
+  public algaesense algaeSensor;
 
   private final SendableChooser<Command> autoChooser;
   
