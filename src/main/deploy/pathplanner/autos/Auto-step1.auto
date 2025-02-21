@@ -55,7 +55,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Testing2"
+            "pathName": "Testing6"
           }
         },
         {
@@ -67,7 +67,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Testing3"
+            "pathName": "Testing5"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Testing6"
           }
         }
       ]

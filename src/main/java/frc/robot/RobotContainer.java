@@ -76,7 +76,9 @@ public class RobotContainer {
     coral = new CoralPlacer();
     aprilDistance = new Limelight3DDistance();
     align = new alignStation(aprilDistance, m_robotDrive);
+    
     NamedCommands.registerCommand("Algae_in", new algaeintaketime(algae,2)); 
+    NamedCommands.registerCommand("Gim_L3", new Gimbalcmd(gimbal, 185));
 
     autoChooser = AutoBuilder.buildAutoChooser("fwd");
     SmartDashboard.putData("Auto Chooser", autoChooser);
@@ -87,12 +89,8 @@ public class RobotContainer {
     // NamedCommands.registerCommand("Ele_L3", new elevatorcmd(elevator, 30));
     // NamedCommands.registerCommand("Ele_L2", new elevatorcmd(elevator, 10));
     // NamedCommands.registerCommand("Gim_L4", new Gimbalcmd(gimbal, 185));
-    NamedCommands.registerCommand("Gim_L3", new Gimbalcmd(gimbal, 185));
     // NamedCommands.registerCommand("Gim_L2", new Gimbalcmd(gimbal, 110));
-    // NamedCommands.registerCommand("Gim_ground", new Gimbalcmd(gimbal, 25));
-
-    new EventTrigger("Algae_in").onTrue(new algaeintaketime(algae, 2));
-    
+    // NamedCommands.registerCommand("Gim_ground", new Gimbalcmd(gimbal, 25));    
   
     configureBindings();  
     m_robotDrive.setDefaultCommand(

@@ -11,22 +11,21 @@
           }
         },
         {
-          "type": "parallel",
+          "type": "path",
           "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "fwd1m"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "Algae_in"
-                }
-              }
-            ]
+            "pathName": "fwd1m"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Gim_L3"
           }
         },
         {
