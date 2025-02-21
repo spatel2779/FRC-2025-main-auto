@@ -24,12 +24,15 @@ public class elevatorcmd extends Command{
 
     @Override
     public void end(boolean interrupted) {
-        
+        elevator.setzero();
     }
 
     @Override
     public boolean isFinished() {
+    if (Math.toDegrees(elevator.encoder.getPosition()) < height +2 && Math.toDegrees(elevator.encoder.getPosition()) > height -2){
     return true;
+    }else{
+    return false;
+    }
   }
-    
 }
