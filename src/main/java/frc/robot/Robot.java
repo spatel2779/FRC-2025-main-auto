@@ -4,6 +4,8 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.PowerDistribution;
+import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -15,14 +17,20 @@ import frc.robot.sensor.algaesense;
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
   public int flag;
-
+  PowerDistribution m_pdp;
   private final RobotContainer m_robotContainer;
 
   public Robot() {
     m_robotContainer = new RobotContainer();
     
-    // m_robotContainer.elevator.encoder.setPosition(0);
+    m_robotContainer.elevator.encoder.setPosition(0);
+    m_pdp = new PowerDistribution(1, ModuleType.kRev);
+
     
+
+  }
+  @Override
+  public void robotInit(){
 
   }
 
@@ -32,11 +40,11 @@ public class Robot extends TimedRobot {
 
     SmartDashboard.putNumber("Elevator-encoder", m_robotContainer.elevator.encoder.getPosition());
     SmartDashboard.putNumber("Absolute Encoder Gimbal", Math.toDegrees(m_robotContainer.gimbal.encoder.getPosition()));
-    // m_robotContainer.elecorr.dio();
-    
 
+    m_robotContainer.elecorr.dio();
+      
     //elevator sensor reset
-    if(!m_robotContainer.elecorr..get()){
+    if(!m_robotContainer.elecorr.input.get()){
       m_robotContainer.elevator.encoder.setPosition(0);
     }
   }
@@ -72,17 +80,36 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     flag = 0;
-    // m_robotContainer.slide.setDefaultCommand(new RunCommand(() -> m_robotContainer.slide.LinearSlider(0),m_robotContainer.slide));
     m_robotContainer.elevator.setDefaultCommand(new RunCommand(()->m_robotContainer.elevator.setzero(), m_robotContainer.elevator));
     m_robotContainer.gimbal.setDefaultCommand(new RunCommand(() -> m_robotContainer.gimbal.GimbalControl(0),m_robotContainer.gimbal));
     m_robotContainer.coral.setDefaultCommand(new RunCommand(()-> m_robotContainer.coral.Take(0.0), m_robotContainer.coral));
-    // m_robotContainer.funnel.setDefaultCommand(new RunCommand(() -> m_robotContainer.funnel.coralstart(0), m_robotContainer.funnel));
     // m_robotContainer.algae.setDefaultCommand(new RunCommand(()-> m_robotContainer.algae.Take(0.0), m_robotContainer.algae));
 
   }
 
   @Override
   public void teleopPeriodic() {
+    // double voltage = m_pdp.getVoltage();
+    // SmartDashboard.putNumber("Voltage", voltage);
+    // double temperatureCelsius = m_pdp.getTemperature();
+    // SmartDashboard.putNumber("Temperature", temperatureCelsius);
+    //   // Get the total current of all channels.
+    //   double totalCurrent = m_pdp.getTotalCurrent();
+    //   SmartDashboard.putNumber("Total Current", totalCurrent);
+  
+    //   // Get the total power of all channels.
+    //   // Power is the bus voltage multiplied by the current with the units Watts.
+    //   double totalPower = m_pdp.getTotalPower();
+    //   SmartDashboard.putNumber("Total Power", totalPower);
+  
+    //   // Get the total energy of all channels.
+    //   // Energy is the power summed over time with units Joules.
+    //   double totalEnergy = m_pdp.getTotalEnergy();
+    //   SmartDashboard.putNumber("Total Energy", totalEnergy);
+    //   double current8 = m_pdp.getCurrent(8);
+    //   SmartDashboard.putNumber("Current Channel 8", current8);
+
+
     if (m_robotContainer.Driver_1.getLeftTriggerAxis()>0.1){
         DriveConstants.kMaxSpeedMetersPerSecond = DriveConstants.kFastSpeedMetersPerSecond*(1-m_robotContainer.Driver_1.getLeftTriggerAxis()) ;
       }
@@ -102,17 +129,9 @@ public class Robot extends TimedRobot {
       flag = 0;
     }
 
-    if(flag == 1){
-      if(m_robotContainer.algaeSensor.dio()){
-       
-
-        m_robotContainer.algae.Take(-0.6);
-      }else{
-        
-      }
-    }
-    else if(flag ==0){
-    
+    if(flag==1 && m_robotContainer.algaeSensor.dio()){
+      m_robotContainer.algae.Take(-0.6);
+    } else{
       m_robotContainer.algae.Take(0);
     }
 

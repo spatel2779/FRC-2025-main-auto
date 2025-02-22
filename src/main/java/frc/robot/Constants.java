@@ -9,7 +9,7 @@ public class Constants {
 
     public static final class DriveConstants{
         public static double kSlowSpeedMetersPersecond=1;
-        public static double kFastSpeedMetersPerSecond=2.2;
+        public static double kFastSpeedMetersPerSecond=2.75;
         public static double kMaxSpeedMetersPerSecond = kFastSpeedMetersPerSecond;
         public static final double kMaxAngularSpeed = 2;
         public static final double kMaxLimelightSpeedMetersPerSecond = 2;

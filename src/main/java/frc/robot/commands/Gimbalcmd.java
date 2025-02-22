@@ -29,7 +29,7 @@ public class Gimbalcmd extends Command{
 
     @Override
     public boolean isFinished() {
-    if (Math.toDegrees(gimbal.encoder.getPosition()) < angle +2 && Math.toDegrees(gimbal.encoder.getPosition()) > angle -2){
+    if (Math.toDegrees(gimbal.encoder.getPosition()) < angle +3 && Math.toDegrees(gimbal.encoder.getPosition()) > angle -3){
     return true;
     }else{
     return false;
