@@ -34,6 +34,8 @@ import frc.robot.commands.CoralOutCmd;
 import frc.robot.commands.Gimbalcmd;
 import frc.robot.commands.algaeintaketime;
 import frc.robot.commands.alignStation;
+import frc.robot.commands.alignStation_a;
+import frc.robot.commands.alignStation_b;
 import frc.robot.commands.elevatorautocmd;
 import frc.robot.commands.elevatorcmd;
 
@@ -75,6 +77,9 @@ public class RobotContainer {
     NamedCommands.registerCommand("Coral-out", new CoralOutCmd(coral, 0.5));
     NamedCommands.registerCommand("Ele_ground", new elevatorautocmd(elevator, 5));
     NamedCommands.registerCommand("Gim_Intake", new Gimbalcmd(gimbal, 15));
+    NamedCommands.registerCommand("LL_Align_A", new alignStation_a(aprilDistance, m_robotDrive, 2));
+    NamedCommands.registerCommand("LL_Align_B", new alignStation_b(aprilDistance, m_robotDrive, 2));
+
 
 
     autoChooser = AutoBuilder.buildAutoChooser("fwd");
@@ -113,11 +118,11 @@ public class RobotContainer {
 
     new JoystickButton(Driver_1, Button.kCircle.value)
     .whileTrue(new RunCommand(
-      ()-> aprilDistance.reeflimelightA(m_robotDrive, Driver_1.getRightTriggerAxis())));
+      ()-> aprilDistance.reeflimelightA(m_robotDrive)));
     
       new JoystickButton(Driver_1, Button.kCross.value)
       .whileTrue(new RunCommand(
-        ()-> aprilDistance.reeflimelightB(m_robotDrive, Driver_1.getRightTriggerAxis())));
+        ()-> aprilDistance.reeflimelightB(m_robotDrive)));
     
     // new JoystickButton(Driver_1, Button.kSquare.value)
     // .onTrue(new alignStation(aprilDistance, m_robotDrive));
@@ -139,9 +144,9 @@ public class RobotContainer {
     new POVButton(Driver_2, 90).onTrue(
       new levels(elevator, gimbal, 61, 200,0.5));
 
-    // Coral Presets
-    new JoystickButton(Driver_2, Button.kOptions.value)
-    .onTrue(new RunCommand(()-> gimbal.gimbaldeg(12)));
+    // // Coral Presets
+    // new JoystickButton(Driver_2, Button.kOptions.value)
+    // .onTrue(new RunCommand(()-> gimbal.gimbaldeg(12)));
 
     //manual gimbal control 
     new Trigger(() -> Driver_2.getRightY()<-0.1).whileTrue(

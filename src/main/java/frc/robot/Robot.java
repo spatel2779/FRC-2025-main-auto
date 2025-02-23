@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import frc.robot.Constants.DriveConstants;
-import frc.robot.sensor.algaesense;
 
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;

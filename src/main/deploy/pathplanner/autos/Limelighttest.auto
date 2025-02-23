@@ -1,0 +1,37 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Testing"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "LL_Align_A"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Testing1_1back"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "LL_Align_A"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "Auto-testing",
+  "choreoAuto": false
+}
