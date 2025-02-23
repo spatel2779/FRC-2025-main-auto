@@ -14,10 +14,12 @@ public class alignStation extends Command{
     public DriveSubsystem m_robotDrive;
     public Timer timer;
     public double temptimer;
+    public double wait;
 
-    public alignStation(Limelight3DDistance llm1, DriveSubsystem roboDrive){
+    public alignStation(Limelight3DDistance llm1, DriveSubsystem roboDrive,double wait){
         this.llm = llm1;
         this.m_robotDrive = roboDrive;
+        this.wait = wait;
     }
 
     @Override
@@ -29,23 +31,23 @@ public class alignStation extends Command{
 
     @Override
     public void execute() {
-        llm.stationlimelight(m_robotDrive, 1);
-        if (timer.get()>2){
-            llm.stoprobot(m_robotDrive);
-        }
+        llm.stationlimelight(m_robotDrive);
         
     }
 
     @Override
     public void end(boolean interrupted) {
-        ele.ElevDegree(0);
-        
+        llm.stoprobot(m_robotDrive);
+
     }
 
     @Override
     public boolean isFinished() {
-    return true;
-  }
-
-    
+    if (timer.get()>wait){
+        return true;
+        }
+    else{
+        return false;
+        }
+    }
 }

@@ -28,7 +28,7 @@ public class elevatorcmd extends Command{
 
     @Override
     public void end(boolean interrupted) {
-        elevator.setzero();
+        elevator.setzeropower();
         timer.stop();
         timer.reset();
     }

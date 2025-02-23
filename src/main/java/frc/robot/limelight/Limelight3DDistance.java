@@ -12,12 +12,12 @@ import frc.robot.subsystems.DriveSubsystem;
 
 public class Limelight3DDistance extends SubsystemBase{
 
-    private final NetworkTable limelightTable;
+    public final NetworkTable limelightTable;
     private final NetworkTable limelightTablefrontA;
     private final NetworkTable limelightTablefrontB;
     private Double valueA;
     private Double valueB;
-
+    private Double ValueS;
 
 
     public Limelight3DDistance() {
@@ -26,6 +26,7 @@ public class Limelight3DDistance extends SubsystemBase{
         this.limelightTablefrontB = NetworkTableInstance.getDefault().getTable("limelight-b");
         this.valueA = 0.0;
         this.valueB = 0.0;
+        this.ValueS = 0.0;
 
     }
 
@@ -144,7 +145,8 @@ public class Limelight3DDistance extends SubsystemBase{
 
 }
 
-public void stationlimelight(DriveSubsystem m_robotDrive, double slowval){
+public void stationlimelight(DriveSubsystem m_robotDrive){
+    limelightTable.getEntry("ledMode").setNumber(0);
     double[] botval= limelightTable.getEntry("targetpose_cameraspace").getDoubleArray(new double[6]);
     double llfront_detect = limelightTable.getEntry("tv").getInteger(0);
     if (llfront_detect>0){
@@ -160,10 +162,12 @@ public void stationlimelight(DriveSubsystem m_robotDrive, double slowval){
         SmartDashboard.putNumber("pitch", botval[3]);
         SmartDashboard.putNumber("yaw", botval[4]);
         SmartDashboard.putNumber("roll", botval[5]);
-        m_robotDrive.drive((botval[2]-0.7)*0.3*0.5*(Constants.DriveConstants.kMaxLimelightSpeedMetersPerSecond*slowval), (-botval[0])*1.2*0.5*(Constants.DriveConstants.kMaxLimelightSpeedMetersPerSecond*slowval), -(botval[4]*0.03), false,true);
+
+        m_robotDrive.drive(-(botval[2]-0.3)*0.4,  (botval[0])*1.2, -(cleanerB(ValueS, botval[4])*0.03), false,true);
         
         
     }else{
+        limelightTable.getEntry("ledMode").setNumber(1);
         m_robotDrive.drive(0,0,0, true,false);
     } 
 

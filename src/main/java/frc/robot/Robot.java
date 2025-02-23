@@ -79,7 +79,7 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     flag = 0;
-    m_robotContainer.elevator.setDefaultCommand(new RunCommand(()->m_robotContainer.elevator.setzero(), m_robotContainer.elevator));
+    m_robotContainer.elevator.setDefaultCommand(new RunCommand(()->m_robotContainer.elevator.setzeropower(), m_robotContainer.elevator));
     m_robotContainer.gimbal.setDefaultCommand(new RunCommand(() -> m_robotContainer.gimbal.GimbalControl(0),m_robotContainer.gimbal));
     m_robotContainer.coral.setDefaultCommand(new RunCommand(()-> m_robotContainer.coral.Take(0.0), m_robotContainer.coral));
     // m_robotContainer.algae.setDefaultCommand(new RunCommand(()-> m_robotContainer.algae.Take(0.0), m_robotContainer.algae));

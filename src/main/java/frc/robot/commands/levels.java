@@ -46,7 +46,7 @@ public class levels extends Command{
     @Override
     public void end(boolean interrupted) {
         gim.gimbalzero();
-        ele.setzero();
+        ele.setzeropower();
         timer.stop();
         timer.reset();
     }

@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Configs;
 
 public class Gimbal extends SubsystemBase{
-    private final SparkMax Gimablmotor;
-    private final SparkMax Gimablmotor2;
+    public final SparkMax Gimablmotor;
+    public final SparkMax Gimablmotor2;
     public final AbsoluteEncoder encoder;
     public double aenc;
     public double Maxval;

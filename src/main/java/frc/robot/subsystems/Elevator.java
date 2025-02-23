@@ -12,8 +12,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Configs;
 
 public class Elevator extends SubsystemBase{
-     private final SparkMax LElevator;
-     private final SparkMax RElevator;
+     public final SparkMax LElevator;
+     public final SparkMax RElevator;
 
      public final RelativeEncoder encoder;
      public double enc;
@@ -65,7 +65,7 @@ public class Elevator extends SubsystemBase{
 
         }
         else{
-            setzero();
+            setzeropower();
             }
         }   
     public void ElevatorDown(Gimbal gimbal, double L2){
@@ -76,7 +76,7 @@ public class Elevator extends SubsystemBase{
                 RElevator.set(-(L2*0.4));
             }
             else{
-                setzero();
+                setzeropower();
             }
                 
                 SmartDashboard.putBoolean("Limit Switch", false);
@@ -85,7 +85,7 @@ public class Elevator extends SubsystemBase{
     }
     
     
-    public void setzero(){
+    public void setzeropower(){
         LElevator.set(0);
         RElevator.set(0);
     }

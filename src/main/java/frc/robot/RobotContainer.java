@@ -38,6 +38,10 @@ import frc.robot.commands.alignStation_a;
 import frc.robot.commands.alignStation_b;
 import frc.robot.commands.elevatorautocmd;
 import frc.robot.commands.elevatorcmd;
+import frc.robot.commands.elevatorpowdowncmd;
+import frc.robot.commands.elevatorpowupcmd;
+import frc.robot.commands.gimbalpowdowncmd;
+import frc.robot.commands.gimbalpowupcmd;
 
 public class RobotContainer {
 
@@ -68,17 +72,22 @@ public class RobotContainer {
     gimbal = new Gimbal();
     coral = new CoralPlacer();
     aprilDistance = new Limelight3DDistance();
-    align = new alignStation(aprilDistance, m_robotDrive);
     
     NamedCommands.registerCommand("Algae_in", new algaeintaketime(algae,2)); 
-    NamedCommands.registerCommand("Gim_L3", new Gimbalcmd(gimbal, 185));
-    NamedCommands.registerCommand("Ele_L4", new elevatorautocmd(elevator, 67));
-    NamedCommands.registerCommand("Coral-in", new CoralIntakeCmd(coral, 1));
-    NamedCommands.registerCommand("Coral-out", new CoralOutCmd(coral, 0.5));
-    NamedCommands.registerCommand("Ele_ground", new elevatorautocmd(elevator, 5));
-    NamedCommands.registerCommand("Gim_Intake", new Gimbalcmd(gimbal, 15));
-    NamedCommands.registerCommand("LL_Align_A", new alignStation_a(aprilDistance, m_robotDrive, 2));
-    NamedCommands.registerCommand("LL_Align_B", new alignStation_b(aprilDistance, m_robotDrive, 2));
+    NamedCommands.registerCommand("Gim_L3", new Gimbalcmd(gimbal, 195)); //190  185
+    NamedCommands.registerCommand("Ele_L4", new elevatorautocmd(elevator, 65)); // 67
+    NamedCommands.registerCommand("Coral_in", new CoralIntakeCmd(coral, 1));
+    NamedCommands.registerCommand("Coral_out", new CoralOutCmd(coral, 0.5));
+    NamedCommands.registerCommand("Ele_ground", new elevatorautocmd(elevator, 3)); //5
+    NamedCommands.registerCommand("Gim_Ground", new Gimbalcmd(gimbal, 15));
+    NamedCommands.registerCommand("LL_Align_A", new alignStation_a(aprilDistance, m_robotDrive, 1.5));
+    NamedCommands.registerCommand("LL_Align_B", new alignStation_b(aprilDistance, m_robotDrive, 1.5));
+    NamedCommands.registerCommand("LL_Align", new alignStation(aprilDistance, m_robotDrive, 1.2));
+    NamedCommands.registerCommand("Gim_power_up", new gimbalpowupcmd(gimbal, 120));
+    NamedCommands.registerCommand("Gim_power_down", new gimbalpowdowncmd(gimbal, 120));
+    NamedCommands.registerCommand("Ele_power_up", new elevatorpowupcmd(elevator, 10, 1.5));
+    NamedCommands.registerCommand("Ele_power_down", new elevatorpowdowncmd(elevator, 5, 1.5));
+
 
 
 
@@ -124,9 +133,13 @@ public class RobotContainer {
       .whileTrue(new RunCommand(
         ()-> aprilDistance.reeflimelightB(m_robotDrive)));
     
-    // new JoystickButton(Driver_1, Button.kSquare.value)
-    // .onTrue(new alignStation(aprilDistance, m_robotDrive));
+    new JoystickButton(Driver_1, Button.kSquare.value)
+    .whileTrue(new RunCommand( ()-> aprilDistance.stationlimelight(m_robotDrive), m_robotDrive));
   
+
+    new JoystickButton(Driver_1, Button.kSquare.value)
+    .whileFalse(new RunCommand( ()-> aprilDistance.limelightTable.getEntry("ledMode").setNumber(1), aprilDistance));
+
     // /*Mechanism Control for Driver 2*/
 
     // POV for Elevator position 
