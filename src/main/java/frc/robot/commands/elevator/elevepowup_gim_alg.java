@@ -1,4 +1,4 @@
-package frc.robot.commands;
+package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -41,9 +41,9 @@ public class elevepowup_gim_alg extends Command{
     @Override
     public void execute() {
         gimbal.gimbaldeg(gimbaldeg);
+       
         if (algaesense.dio()){
             algae_on.Take(-0.6);
-
         }else{
             algae_on.Take(0);
             flag=1;

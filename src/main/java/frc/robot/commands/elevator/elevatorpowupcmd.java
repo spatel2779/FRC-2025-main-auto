@@ -1,17 +1,19 @@
-package frc.robot.commands;
+package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Elevator;
 
-public class elevatorautocmd extends Command{
+public class elevatorpowupcmd extends Command{
     public Elevator elevator;
     public double height;
     public Timer timer;
+    public double wait;
 
-    public elevatorautocmd(Elevator elevatormove, double move){
+    public elevatorpowupcmd(Elevator elevatormove, double move, double time){
         this.elevator = elevatormove;
         this.height = move;
+        this.wait = time;
     }
 
     @Override
@@ -23,7 +25,7 @@ public class elevatorautocmd extends Command{
 
     @Override
     public void execute() {
-        elevator.ElevDegree(height);
+        elevator.LElevator.set(0.3);
     }
 
     @Override
@@ -35,7 +37,7 @@ public class elevatorautocmd extends Command{
 
     @Override
     public boolean isFinished() {
-    if ((Math.toDegrees(elevator.encoder.getPosition()) < height +5 && Math.toDegrees(elevator.encoder.getPosition()) > height -5)|| timer.get()>1.5){
+    if ((Math.toDegrees(elevator.encoder.getPosition()) < height +2 && Math.toDegrees(elevator.encoder.getPosition()) > height -2)|| timer.get()>wait){
     return true;
     }else{
     return false;

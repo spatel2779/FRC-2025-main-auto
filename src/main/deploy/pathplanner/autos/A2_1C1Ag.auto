@@ -87,13 +87,13 @@
                           {
                             "type": "named",
                             "data": {
-                              "name": "Ele_power_down"
+                              "name": "Gim_Algae"
                             }
                           },
                           {
                             "type": "named",
                             "data": {
-                              "name": "Gim_Algae"
+                              "name": "Ele_power_down"
                             }
                           }
                         ]
@@ -127,6 +127,12 @@
           "type": "named",
           "data": {
             "name": "Algae_checking"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Coral_out"
           }
         }
       ]

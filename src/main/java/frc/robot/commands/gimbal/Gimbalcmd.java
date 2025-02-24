@@ -1,13 +1,13 @@
-package frc.robot.commands;
+package frc.robot.commands.gimbal;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Gimbal;
 
-public class gimbalpowdowncmd extends Command{
+public class Gimbalcmd extends Command{
     public Gimbal gimbal;
     public Integer angle;
 
-    public gimbalpowdowncmd(Gimbal gim, int deg){
+    public Gimbalcmd(Gimbal gim, int deg){
         this.gimbal = gim;
         this.angle = deg;
     }
@@ -20,18 +20,16 @@ public class gimbalpowdowncmd extends Command{
 
     @Override
     public void execute() {
-        gimbal.Gimablmotor.set(-0.25);
+        gimbal.gimbaldeg(angle);
     }
 
     @Override
     public void end(boolean interrupted) {
-        gimbal.Gimablmotor.set(0);
-
     }
 
     @Override
     public boolean isFinished() {
-    if (Math.toDegrees(gimbal.encoder.getPosition()) < angle +5 && Math.toDegrees(gimbal.encoder.getPosition()) > angle -5){
+    if (Math.toDegrees(gimbal.encoder.getPosition()) < angle +3 && Math.toDegrees(gimbal.encoder.getPosition()) > angle -3){
     return true;
     }else{
     return false;

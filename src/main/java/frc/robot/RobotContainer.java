@@ -23,29 +23,26 @@ import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Gimbal;
 import frc.robot.subsystems.algae;
-import frc.robot.commands.levels;
-import frc.robot.commands.levelsecondbase;
-import frc.robot.commands.llaligntoreef;
+import frc.robot.commands.algae.algaeintaketime;
+import frc.robot.commands.algae.algaeouttime;
+import frc.robot.commands.coral.CoralIntakeCmd;
+import frc.robot.commands.coral.CoralOutCmd;
+import frc.robot.commands.elevator.elevatorautocmd;
+import frc.robot.commands.elevator.elevatorpowdowncmd;
+import frc.robot.commands.elevator.elevatorpowupcmd;
+import frc.robot.commands.elevator.elevepowup_gim_alg;
+import frc.robot.commands.elevator.levels;
+import frc.robot.commands.elevator.levelsecondbase;
+import frc.robot.commands.gimbal.Gimbalcmd;
+import frc.robot.commands.gimbal.gimbalpowdowncmd;
+import frc.robot.commands.gimbal.gimbalpowupcmd;
+import frc.robot.commands.limelight.alignStation;
+import frc.robot.commands.limelight.alignStation_a;
+import frc.robot.commands.limelight.alignStation_b;
+import frc.robot.commands.limelight.alignStation_b_algae;
 import frc.robot.limelight.Limelight3DDistance;
 import frc.robot.sensor.algaesense;
 import frc.robot.sensor.metal;
-import frc.robot.Constants.NeoMotorConstants;
-import frc.robot.commands.CoralIntakeCmd;
-import frc.robot.commands.CoralOutCmd;
-import frc.robot.commands.Gimbalcmd;
-import frc.robot.commands.algaeintaketime;
-import frc.robot.commands.algaeouttime;
-import frc.robot.commands.alignStation;
-import frc.robot.commands.alignStation_a;
-import frc.robot.commands.alignStation_b;
-import frc.robot.commands.alignStation_b_algae;
-import frc.robot.commands.elevatorautocmd;
-import frc.robot.commands.elevatorcmd;
-import frc.robot.commands.elevatorpowdowncmd;
-import frc.robot.commands.elevatorpowupcmd;
-import frc.robot.commands.elevepowup_gim_alg;
-import frc.robot.commands.gimbalpowdowncmd;
-import frc.robot.commands.gimbalpowupcmd;
 
 public class RobotContainer {
 
@@ -79,7 +76,6 @@ public class RobotContainer {
     
     NamedCommands.registerCommand("Algae_sensorin", new algaeintaketime(algae,2,algaeSensor)); 
     NamedCommands.registerCommand("Algae_out", new algaeouttime(algae,1)); 
-
     NamedCommands.registerCommand("Gim_L3", new Gimbalcmd(gimbal, 195)); //190  185
     NamedCommands.registerCommand("Ele_L4", new elevatorautocmd(elevator, 65)); // 67
     NamedCommands.registerCommand("Coral_in", new CoralIntakeCmd(coral, 1));
