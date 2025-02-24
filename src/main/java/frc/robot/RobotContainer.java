@@ -29,17 +29,21 @@ import frc.robot.commands.llaligntoreef;
 import frc.robot.limelight.Limelight3DDistance;
 import frc.robot.sensor.algaesense;
 import frc.robot.sensor.metal;
+import frc.robot.Constants.NeoMotorConstants;
 import frc.robot.commands.CoralIntakeCmd;
 import frc.robot.commands.CoralOutCmd;
 import frc.robot.commands.Gimbalcmd;
 import frc.robot.commands.algaeintaketime;
+import frc.robot.commands.algaeouttime;
 import frc.robot.commands.alignStation;
 import frc.robot.commands.alignStation_a;
 import frc.robot.commands.alignStation_b;
+import frc.robot.commands.alignStation_b_algae;
 import frc.robot.commands.elevatorautocmd;
 import frc.robot.commands.elevatorcmd;
 import frc.robot.commands.elevatorpowdowncmd;
 import frc.robot.commands.elevatorpowupcmd;
+import frc.robot.commands.elevepowup_gim_alg;
 import frc.robot.commands.gimbalpowdowncmd;
 import frc.robot.commands.gimbalpowupcmd;
 
@@ -73,34 +77,28 @@ public class RobotContainer {
     coral = new CoralPlacer();
     aprilDistance = new Limelight3DDistance();
     
-    NamedCommands.registerCommand("Algae_in", new algaeintaketime(algae,2)); 
+    NamedCommands.registerCommand("Algae_sensorin", new algaeintaketime(algae,2,algaeSensor)); 
+    NamedCommands.registerCommand("Algae_out", new algaeouttime(algae,1)); 
+
     NamedCommands.registerCommand("Gim_L3", new Gimbalcmd(gimbal, 195)); //190  185
     NamedCommands.registerCommand("Ele_L4", new elevatorautocmd(elevator, 65)); // 67
     NamedCommands.registerCommand("Coral_in", new CoralIntakeCmd(coral, 1));
     NamedCommands.registerCommand("Coral_out", new CoralOutCmd(coral, 0.5));
     NamedCommands.registerCommand("Ele_ground", new elevatorautocmd(elevator, 3)); //5
     NamedCommands.registerCommand("Gim_Ground", new Gimbalcmd(gimbal, 15));
+    NamedCommands.registerCommand("Gim_Algae", new Gimbalcmd(gimbal, 120));
     NamedCommands.registerCommand("LL_Align_A", new alignStation_a(aprilDistance, m_robotDrive, 1.5));
     NamedCommands.registerCommand("LL_Align_B", new alignStation_b(aprilDistance, m_robotDrive, 1.5));
+    NamedCommands.registerCommand("LL_Align_Algae", new alignStation_b_algae(aprilDistance, m_robotDrive, 1.5));
     NamedCommands.registerCommand("LL_Align", new alignStation(aprilDistance, m_robotDrive, 1.2));
     NamedCommands.registerCommand("Gim_power_up", new gimbalpowupcmd(gimbal, 120));
     NamedCommands.registerCommand("Gim_power_down", new gimbalpowdowncmd(gimbal, 120));
-    NamedCommands.registerCommand("Ele_power_up", new elevatorpowupcmd(elevator, 10, 1.5));
-    NamedCommands.registerCommand("Ele_power_down", new elevatorpowdowncmd(elevator, 5, 1.5));
-
-
-
+    NamedCommands.registerCommand("Ele_power_up", new elevatorpowupcmd(elevator, 20, 2));
+    NamedCommands.registerCommand("Ele_power_down", new elevatorpowdowncmd(elevator, 25, 1.5));
+    NamedCommands.registerCommand("Algae_checking", new elevepowup_gim_alg(elevator, gimbal, 120, algaeSensor, algae, 5, 23));
 
     autoChooser = AutoBuilder.buildAutoChooser("fwd");
-    SmartDashboard.putData("Auto Chooser", autoChooser);
-
-    // NamedCommands.registerCommand("aligntostation", new alignStation(aprilDistance, m_robotDrive));
-    // NamedCommands.registerCommand("Ele_L4", new elevatorcmd(elevator, 63));
-    // NamedCommands.registerCommand("Ele_L3", new elevatorcmd(elevator, 30));
-    // NamedCommands.registerCommand("Ele_L2", new elevatorcmd(elevator, 10));
-    // NamedCommands.registerCommand("Gim_L4", new Gimbalcmd(gimbal, 185));
-    // NamedCommands.registerCommand("Gim_L2", new Gimbalcmd(gimbal, 110));
-    // NamedCommands.registerCommand("Gim_ground", new Gimbalcmd(gimbal, 25));    
+    SmartDashboard.putData("Auto Chooser", autoChooser);  
   
     configureBindings();  
     m_robotDrive.setDefaultCommand(
@@ -131,7 +129,8 @@ public class RobotContainer {
     
       new JoystickButton(Driver_1, Button.kCross.value)
       .whileTrue(new RunCommand(
-        ()-> aprilDistance.reeflimelightB(m_robotDrive)));
+        ()-> aprilDistance.reeflimelightB(m_robotDrive)));// - negative for right side
+        // ()-> aprilDistance.reeflimelightB(m_robotDrive)));
     
     new JoystickButton(Driver_1, Button.kSquare.value)
     .whileTrue(new RunCommand( ()-> aprilDistance.stationlimelight(m_robotDrive), m_robotDrive));

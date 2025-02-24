@@ -170,6 +170,29 @@ public void stationlimelight(DriveSubsystem m_robotDrive){
         limelightTable.getEntry("ledMode").setNumber(1);
         m_robotDrive.drive(0,0,0, true,false);
     } 
-
 }
+
+    public void reeflimelightB_algae(DriveSubsystem m_robotDrive){
+        double[] botval= limelightTablefrontB.getEntry("targetpose_cameraspace").getDoubleArray(new double[6]);
+        double llfront_detect = limelightTablefrontB.getEntry("tv").getInteger(0);
+        if (llfront_detect>0){
+    
+            double tx = limelightTablefrontB.getEntry("tx").getDouble(0.0);   
+            double ty = limelightTablefrontB.getEntry("ty").getDouble(0.0); 
+            double tz = limelightTablefrontB.getEntry("tz").getDouble(0.0);   
+    
+    
+            SmartDashboard.putNumber("tx", botval[0]);
+            SmartDashboard.putNumber("ty", botval[1]);
+            SmartDashboard.putNumber("tz", botval[2]);
+            SmartDashboard.putNumber("pitch", botval[3]);
+            SmartDashboard.putNumber("yaw", botval[4]);
+            SmartDashboard.putNumber("roll", botval[5]);
+            m_robotDrive.drive((botval[2]-0.6)*0.3, (-(botval[0]-0.2150))*1.2,-(cleanerA(valueB, botval[4])*0.03), false,true);
+            
+            
+        }else{
+            m_robotDrive.drive(0,0,0, true,false);
+        } 
+    }
 }

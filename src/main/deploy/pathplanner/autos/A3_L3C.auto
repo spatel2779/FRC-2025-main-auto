@@ -11,7 +11,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "1_B3_2C"
+                  "pathName": "A3_1_2C"
                 }
               },
               {
@@ -55,7 +55,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "2_B3_2C"
+                  "pathName": "A3_2_2C"
                 }
               },
               {
@@ -112,7 +112,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "3_B3_2C"
+                  "pathName": "A3_3_2C"
                 }
               },
               {
@@ -169,7 +169,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "4_B3_2C"
+                  "pathName": "A3_4_2C"
                 }
               },
               {
@@ -232,7 +232,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "5_B3_2C"
+                  "pathName": "A3_5_2C"
                 }
               },
               {
@@ -286,6 +286,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "Auto-testing",
+  "folder": "A3_Auto_Barge",
   "choreoAuto": false
 }

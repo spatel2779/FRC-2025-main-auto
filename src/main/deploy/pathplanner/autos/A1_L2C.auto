@@ -11,19 +11,13 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "1_B3_2C"
+                  "pathName": "B1_1_L2C"
                 }
               },
               {
                 "type": "named",
                 "data": {
                   "name": "Gim_L3"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "Ele_power_up"
                 }
               }
             ]
@@ -61,7 +55,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "2_B3_2C"
+                  "pathName": "B1_2_L2C"
                 }
               },
               {
@@ -71,7 +65,7 @@
                     {
                       "type": "wait",
                       "data": {
-                        "waitTime": 0.4
+                        "waitTime": 0.5
                       }
                     },
                     {
@@ -82,27 +76,14 @@
                     }
                   ]
                 }
-              },
-              {
-                "type": "sequential",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "wait",
-                      "data": {
-                        "waitTime": 0.2
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Gim_power_down"
-                      }
-                    }
-                  ]
-                }
               }
             ]
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 20.0
           }
         },
         {
@@ -137,7 +118,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "3_B3_2C"
+                  "pathName": "B1_3_L2C"
                 }
               },
               {
@@ -157,12 +138,6 @@
                       }
                     }
                   ]
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "Ele_power_up"
                 }
               }
             ]
@@ -200,7 +175,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "4_B3_2C"
+                  "pathName": "B1_4_L2C"
                 }
               },
               {
@@ -210,32 +185,13 @@
                     {
                       "type": "wait",
                       "data": {
-                        "waitTime": 0.4
+                        "waitTime": 0.5
                       }
                     },
                     {
                       "type": "named",
                       "data": {
                         "name": "Ele_ground"
-                      }
-                    }
-                  ]
-                }
-              },
-              {
-                "type": "sequential",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "wait",
-                      "data": {
-                        "waitTime": 0.2
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Gim_power_down"
                       }
                     }
                   ]
@@ -279,6 +235,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "Auto-testing",
+  "folder": "A1_Auto_Processor",
   "choreoAuto": false
 }

@@ -3,14 +3,16 @@
   "robotLength": 0.85,
   "holonomicMode": true,
   "pathFolders": [
-    "Blue Bottom",
-    "Blue Middle",
-    "Blue Top",
+    "A1_Processor",
+    "A2_Center",
+    "A3_Barge",
     "Auto testing"
   ],
   "autoFolders": [
-    "Auto-testing",
-    "Blue"
+    "A1_Auto_Processor",
+    "A2_Auto_Center",
+    "A3_Auto_Barge",
+    "Auto-testing"
   ],
   "defaultMaxVel": 3.25,
   "defaultMaxAccel": 3.5,

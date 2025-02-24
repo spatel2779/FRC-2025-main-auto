@@ -25,7 +25,7 @@ public class elevatorpowupcmd extends Command{
 
     @Override
     public void execute() {
-        elevator.LElevator.set(0.25);
+        elevator.LElevator.set(0.3);
     }
 
     @Override

@@ -23,7 +23,7 @@ public class algaeouttime extends Command{
 
     @Override
     public void execute() {
-        algae_s.Take(0.6);
+        algae_s.Take(1);
 
     }
 

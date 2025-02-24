@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 16.0,
-        "y": 7.0
+        "x": 13.7,
+        "y": 5.5
       },
       "prevControl": null,
       "nextControl": {
-        "x": 16.30373166561506,
-        "y": 7.132582086077444
+        "x": 14.00373166561506,
+        "y": 5.632582086077444
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 13.7,
-        "y": 5.5
+        "x": 16.0,
+        "y": 7.0
       },
       "prevControl": {
-        "x": 13.426479024728248,
-        "y": 5.373434249309923
+        "x": 15.726479024728249,
+        "y": 6.873434249309923
       },
       "nextControl": null,
       "isLocked": false,
@@ -42,10 +42,10 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -119.99999999999999
+    "rotation": -125.00000000000001
   },
   "reversed": false,
-  "folder": "Auto testing",
+  "folder": "A1_Processor",
   "idealStartingState": {
     "velocity": 0,
     "rotation": -125.00000000000001
