@@ -1,6 +1,7 @@
 package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.sensor.algaesense;
 import frc.robot.subsystems.CoralPlacer;
@@ -18,7 +19,6 @@ public class elevepowup_gim_alg extends Command{
     public double heightL3;
     public int flag;
     public double gimbaldeg;
-    public CoralPlacer coraltest;
 
     public elevepowup_gim_alg(Elevator elevatormove, Gimbal gimbal, double GimbalDegree , algaesense alg_sns,algae algae_on, double time, double L3){
         this.elevator = elevatormove;
@@ -40,18 +40,19 @@ public class elevepowup_gim_alg extends Command{
 
     @Override
     public void execute() {
-        gimbal.gimbaldeg(gimbaldeg);
        
         if (algaesense.dio()){
             algae_on.Take(-0.6);
         }else{
             algae_on.Take(0);
+            System.out.println("algaer in comstop ");
             flag=1;
         }
-        if(elevator.encoder.getPosition()< heightL3 +3 && elevator.encoder.getPosition()> heightL3 -3){
-            elevator.LElevator.set(0.3);
+        if(!(elevator.encoder.getPosition()< heightL3 +3 && elevator.encoder.getPosition()> heightL3 -3)){
+            elevator.LElevator.set(0.2);
         }else{
             elevator.LElevator.set(0);
+            System.out.println("elevator in comstop ");
             flag = 1;
         }
     }
@@ -66,7 +67,8 @@ public class elevepowup_gim_alg extends Command{
 
     @Override
     public boolean isFinished() {
-    if ((Math.toDegrees(elevator.encoder.getPosition()) < heightL3 +2 && Math.toDegrees(elevator.encoder.getPosition()) > heightL3-2)|| timer.get()>wait || flag==1){
+    if (elevator.encoder.getPosition() > heightL3 || flag==1){
+        System.out.println("Final comstop ");
     return true;
     }else{
     return false;

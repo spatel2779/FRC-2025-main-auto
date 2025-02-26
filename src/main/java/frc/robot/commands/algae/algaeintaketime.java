@@ -38,6 +38,7 @@ public class algaeintaketime extends Command{
         algae_s.Take(0);
         timer.stop();
         timer.reset();
+        System.out.println("Sensor off");
     }
 
     @Override

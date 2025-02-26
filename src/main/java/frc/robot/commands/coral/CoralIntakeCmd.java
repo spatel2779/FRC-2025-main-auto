@@ -37,9 +37,11 @@ public class CoralIntakeCmd extends Command{
 
     @Override
     public boolean isFinished() {
-    if(timer.get()>wait)
+    if(timer.get()>wait){
+    System.out.println("Coral intake finished");
     return true;
-    else
+    }else{
     return false;
+    }
   }
 }

@@ -43,11 +43,11 @@ public class alignStation_b extends Command{
 
     @Override
     public boolean isFinished() {
-    if (timer.get()>wait)
+    if (timer.get()>wait){
+        System.out.println("Limelight B endind");
         return true;
-    else
+    }else{
         return false;
   }
-
-    
+}   
 }

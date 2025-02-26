@@ -17,13 +17,26 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "Gim_L3"
+                  "name": "Gim_power_up"
                 }
               },
               {
-                "type": "named",
+                "type": "sequential",
                 "data": {
-                  "name": "Ele_power_up"
+                  "commands": [
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Gim_L3"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Ele_power_up"
+                      }
+                    }
+                  ]
                 }
               }
             ]
@@ -55,12 +68,6 @@
           }
         },
         {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.8
-          }
-        },
-        {
           "type": "parallel",
           "data": {
             "commands": [
@@ -77,7 +84,7 @@
                     {
                       "type": "wait",
                       "data": {
-                        "waitTime": 0.3
+                        "waitTime": 0.5
                       }
                     },
                     {
@@ -118,9 +125,22 @@
           }
         },
         {
-          "type": "named",
+          "type": "parallel",
           "data": {
-            "name": "LL_Align_Algae"
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "LL_Align_Algae"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Gim_Algae"
+                }
+              }
+            ]
           }
         },
         {
@@ -130,9 +150,85 @@
           }
         },
         {
-          "type": "named",
+          "type": "wait",
           "data": {
-            "name": "Coral_out"
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "A2_4_1C1Ag"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Algae_sensorin"
+                }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 0.5
+                      }
+                    },
+                    {
+                      "type": "parallel",
+                      "data": {
+                        "commands": [
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "Gim_barge_power_up"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Gim_barge"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Ele_barge"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Algae_out"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Algae_thrower"
+                }
+              }
+            ]
           }
         }
       ]

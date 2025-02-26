@@ -37,9 +37,11 @@ public class CoralOutCmd extends Command{
 
     @Override
     public boolean isFinished() {
-    if(timer.get()>wait)
-    return true;
-    else
+    if(timer.get()>wait){
+      System.out.println("Coral outake done");
+      return true;
+    }else{
     return false;
   }
+}
 }

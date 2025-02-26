@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 11.2,
-        "y": 4.0
+        "x": 9.88985655737705,
+        "y": 2.0530225409836067
       },
       "prevControl": null,
       "nextControl": {
-        "x": 11.83308532951105,
-        "y": 4.001832340284281
+        "x": 10.991925078437086,
+        "y": 2.05872518956245
       },
       "isLocked": false,
-      "linkedName": "A2_2_1C1Ag_end"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 11.3,
-        "y": 4.0
+        "x": 12.539139344262294,
+        "y": 1.9331454918032784
       },
       "prevControl": {
-        "x": 11.560144139584168,
-        "y": 3.997283060019366
+        "x": 12.289139344327912,
+        "y": 1.9331397639003065
       },
       "nextControl": null,
       "isLocked": false,
@@ -33,8 +33,8 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 2.0,
-    "maxAcceleration": 1.5,
+    "maxVelocity": 3.25,
+    "maxAcceleration": 3.5,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -42,13 +42,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -150.0684881594921
   },
   "reversed": false,
-  "folder": "A2_Center",
+  "folder": "Auto testing",
   "idealStartingState": {
     "velocity": 0,
     "rotation": 0.0
   },
-  "useDefaultConstraints": false
+  "useDefaultConstraints": true
 }

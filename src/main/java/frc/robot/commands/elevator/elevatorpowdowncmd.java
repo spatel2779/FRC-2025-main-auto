@@ -37,7 +37,8 @@ public class elevatorpowdowncmd extends Command{
 
     @Override
     public boolean isFinished() {
-    if ((Math.toDegrees(elevator.encoder.getPosition()) < height +2 && Math.toDegrees(elevator.encoder.getPosition()) > height -2)|| timer.get()>wait){
+    if (elevator.encoder.getPosition() < height){
+        System.out.println("Elevator powered down");
     return true;
     }else{
     return false;

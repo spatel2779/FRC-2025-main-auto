@@ -32,7 +32,8 @@ public class gimbalpowupcmd extends Command{
     @Override
     public boolean isFinished() {
     if (Math.toDegrees(gimbal.encoder.getPosition()) < angle +5 && Math.toDegrees(gimbal.encoder.getPosition()) > angle -5){
-    return true;
+        System.out.println("Gimbal powered up");
+        return true;        
     }else{
     return false;
     }

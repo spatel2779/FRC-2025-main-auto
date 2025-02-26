@@ -1,23 +1,23 @@
 package frc.robot.limelight;
 
 import edu.wpi.first.networktables.NetworkTable;
-import edu.wpi.first.networktables.NetworkTableEntry;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
 import frc.robot.LimelightHelpers;
-import frc.robot.Constants.DriveConstants;
 import frc.robot.subsystems.DriveSubsystem;
 
 public class Limelight3DDistance extends SubsystemBase{
 
     public final NetworkTable limelightTable;
-    private final NetworkTable limelightTablefrontA;
-    private final NetworkTable limelightTablefrontB;
+    public final NetworkTable limelightTablefrontA;
+    public final NetworkTable limelightTablefrontB;
     private Double valueA;
     private Double valueB;
     private Double ValueS;
+    private Timer timer; 
 
 
     public Limelight3DDistance() {
@@ -27,6 +27,7 @@ public class Limelight3DDistance extends SubsystemBase{
         this.valueA = 0.0;
         this.valueB = 0.0;
         this.ValueS = 0.0;
+        // timer.start();
 
     }
 
@@ -36,10 +37,13 @@ public class Limelight3DDistance extends SubsystemBase{
         return limelightTable.getEntry("targetpose_cameraspace").getDoubleArray(new double[6]);
     }
 
-    private boolean hasTarget() {
-        return LimelightHelpers.getTV("");
+    public boolean hasTargetA() {
+        return LimelightHelpers.getTV("limelight-a");
     }
 
+    public boolean hasTargetB() {
+        return LimelightHelpers.getTV("limelight-b");
+    }
     private double cleanerA(Double prev, Double curr){
         if (Math.abs(curr-prev)>1.3){
             return curr;
@@ -56,31 +60,31 @@ public class Limelight3DDistance extends SubsystemBase{
         return 0.0;
     }
 
-    public void updateDistance(DriveSubsystem m_robotDrive, Integer offset) {
-        SmartDashboard.putBoolean("Cross Button", true);
+    // public void updateDistance(DriveSubsystem m_robotDrive, Integer offset) {
+    //     SmartDashboard.putBoolean("Cross Button", true);
 
-        if (hasTarget()) {
-            double[] distance = getTargetCamerSpace();
-            double tx = limelightTable.getEntry("tx").getDouble(0.0);   
-            double ty = limelightTable.getEntry("ty").getDouble(0.0); 
-            double tz = limelightTable.getEntry("tz").getDouble(0.0);   
+    //     if (hasTarget()) {
+    //         double[] distance = getTargetCamerSpace();
+    //         double tx = limelightTable.getEntry("tx").getDouble(0.0);   
+    //         double ty = limelightTable.getEntry("ty").getDouble(0.0); 
+    //         double tz = limelightTable.getEntry("tz").getDouble(0.0);   
   
 
-            SmartDashboard.putNumber("tx", distance[0]);
-            SmartDashboard.putNumber("ty", distance[1]);
-            SmartDashboard.putNumber("tz", distance[2]);
-            SmartDashboard.putNumber("pitch", distance[3]);
-            SmartDashboard.putNumber("yaw", distance[4]);
-            SmartDashboard.putNumber("roll", distance[5]);
-            m_robotDrive.drive(distance[2]>0.7?(-(distance[2]-0.3)*0.8):0, (distance[0]+ offset), -(distance[4]*0.01), false,true);
+    //         SmartDashboard.putNumber("tx", distance[0]);
+    //         SmartDashboard.putNumber("ty", distance[1]);
+    //         SmartDashboard.putNumber("tz", distance[2]);
+    //         SmartDashboard.putNumber("pitch", distance[3]);
+    //         SmartDashboard.putNumber("yaw", distance[4]);
+    //         SmartDashboard.putNumber("roll", distance[5]);
+    //         m_robotDrive.drive(distance[2]>0.7?(-(distance[2]-0.3)*0.8):0, (distance[0]+ offset), -(distance[4]*0.01), false,true);
             
             
-        }else{
-            m_robotDrive.drive(0,0,0, true,false);
+    //     }else{
+    //         m_robotDrive.drive(0,0,0, true,false);
 
-        } 
+    //     } 
 
-    }
+    // }
 
     public void stoprobot(DriveSubsystem m_robotDrive){
         m_robotDrive.drive(0, 0, 0, false, true);
@@ -112,7 +116,7 @@ public class Limelight3DDistance extends SubsystemBase{
         SmartDashboard.putNumber("pitch", botval[3]);
         SmartDashboard.putNumber("yaw", botval[4]);
         SmartDashboard.putNumber("roll", botval[5]);
-        m_robotDrive.drive((botval[2]-0.6)*0.3, (-botval[0])*1.2,-(cleanerA(valueA, botval[4])*0.03), false,true);
+        m_robotDrive.drive((botval[2]-0.6)*0.3, (-(botval[0]))*1.2,-(cleanerA(valueA, botval[4])*0.03), false,true);
         
         
     }else{
@@ -188,11 +192,29 @@ public void stationlimelight(DriveSubsystem m_robotDrive){
             SmartDashboard.putNumber("pitch", botval[3]);
             SmartDashboard.putNumber("yaw", botval[4]);
             SmartDashboard.putNumber("roll", botval[5]);
-            m_robotDrive.drive((botval[2]-0.6)*0.3, (-(botval[0]-0.2150))*1.2,-(cleanerA(valueB, botval[4])*0.03), false,true);
+            m_robotDrive.drive((botval[2]-0.1)*0.2, (-(botval[0]-0.2150))*1.1,-(cleanerA(valueB, botval[4])*0.03), false,true);
             
             
         }else{
             m_robotDrive.drive(0,0,0, true,false);
         } 
+
+
     }
+    // public void detector(){
+    //     boolean detect = false;
+    //     double llfrontB_detect = limelightTablefrontB.getEntry("tv").getInteger(0);
+    //     double llfrontA_detect = limelightTablefrontA.getEntry("tv").getInteger(0);
+    //     double[] botvalB= limelightTablefrontB.getEntry("targetpose_cameraspace").getDoubleArray(new double[6]);
+    //     double[] botvalA= limelightTablefrontA.getEntry("targetpose_cameraspace").getDoubleArray(new double[6]);
+
+    //     if(llfrontA_detect==1 && llfrontB_detect==1){
+    //         if(botvalA[0]<0.7 && botvalB[0]<0.7){
+    //             blinkin.set(0.73);
+    //         }else{
+    //             blinkin.set(0.81);
+    //         }
+    //     }
+
+    // }
 }

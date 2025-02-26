@@ -66,7 +66,7 @@ public class Gimbal extends SubsystemBase{
             if(aenc <=235 && elevator.encoder.getPosition()>10){
             Gimablmotor.set(joystick*0.4);
             }
-            else if(aenc<195){
+            else if(aenc<120){
             Gimablmotor.set(joystick*0.4);
             }
             else{
@@ -82,7 +82,7 @@ public class Gimbal extends SubsystemBase{
         Gimablmotor.set(0);
     }
 
-    public void algaepreset(){
-        gimbaldeg(1.1);
-    }
+    // public void algaepreset(){
+    //     gimbaldeg(1.1);
+    // }
 }

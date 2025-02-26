@@ -6,6 +6,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -18,10 +19,11 @@ public class Robot extends TimedRobot {
   public int flag;
   PowerDistribution m_pdp;
   private final RobotContainer m_robotContainer;
+  public double gyroval = 0;
+
 
   public Robot() {
     m_robotContainer = new RobotContainer();
-    
     m_robotContainer.elevator.encoder.setPosition(0);
     m_pdp = new PowerDistribution(1, ModuleType.kRev);
 
@@ -69,10 +71,14 @@ public class Robot extends TimedRobot {
   }
 
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    SmartDashboard.putNumber("Gyroval",  m_robotContainer.m_robotDrive.yaw());
+  }
 
   @Override
-  public void autonomousExit() {}
+  public void autonomousExit() {
+    gyroval = m_robotContainer.m_robotDrive.yaw();
+  }
 
   @Override
   public void teleopInit() {
@@ -80,6 +86,8 @@ public class Robot extends TimedRobot {
       m_autonomousCommand.cancel();
     }
     flag = 0;
+    m_robotContainer.m_robotDrive.zeroHeading();
+    m_robotContainer.m_robotDrive.OFFSET = gyroval+180;
     m_robotContainer.elevator.setDefaultCommand(new RunCommand(()->m_robotContainer.elevator.setzeropower(), m_robotContainer.elevator));
     m_robotContainer.gimbal.setDefaultCommand(new RunCommand(() -> m_robotContainer.gimbal.GimbalControl(0),m_robotContainer.gimbal));
     m_robotContainer.coral.setDefaultCommand(new RunCommand(()-> m_robotContainer.coral.Take(0.0), m_robotContainer.coral));
@@ -89,6 +97,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
+    SmartDashboard.putNumber("Gyrovalteleop",  m_robotContainer.m_robotDrive.yaw());
+
+    m_robotContainer.led.set(-0.87);
     // double voltage = m_pdp.getVoltage();
     // SmartDashboard.putNumber("Voltage", voltage);
     // double temperatureCelsius = m_pdp.getTemperature();
@@ -133,10 +144,17 @@ public class Robot extends TimedRobot {
       m_robotContainer.algae.Take(-0.6);
     } else{
       m_robotContainer.algae.Take(0);
+
     }
 
+    if(m_robotContainer.aprilDistance.hasTargetA() && m_robotContainer.aprilDistance.hasTargetB()){
+      m_robotContainer.led.set(0.73);
+    }else if(m_robotContainer.aprilDistance.hasTargetA()){
+      m_robotContainer.led.set(-0.15);
+    }else if(m_robotContainer.aprilDistance.hasTargetB()){
+      m_robotContainer.led.set(-0.11);
+    }
   }
-
   @Override
   public void teleopExit() {}
 

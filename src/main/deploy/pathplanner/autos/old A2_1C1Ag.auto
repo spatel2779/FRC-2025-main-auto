@@ -11,51 +11,13 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "A3_1_3C"
+                  "pathName": "A2_1_1C1Ag"
                 }
               },
               {
                 "type": "named",
                 "data": {
-                  "name": "Gim_L3"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "Ele_L4"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "LL_Align_A"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Coral_out"
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "A3_2_3C"
+                  "name": "Gim_power_up"
                 }
               },
               {
@@ -65,64 +27,7 @@
                     {
                       "type": "wait",
                       "data": {
-                        "waitTime": 0.5
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Ele_ground"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "Gim_Ground"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "LL_Align"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Coral_in"
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "A3_3_3C"
-                }
-              },
-              {
-                "type": "sequential",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "wait",
-                      "data": {
-                        "waitTime": 0.2
+                        "waitTime": 2.0
                       }
                     },
                     {
@@ -130,6 +35,12 @@
                       "data": {
                         "name": "Gim_L3"
                       }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Ele_power_up"
+                      }
                     }
                   ]
                 }
@@ -160,69 +71,12 @@
           "type": "named",
           "data": {
             "name": "Coral_out"
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "path",
-                "data": {
-                  "pathName": "A3_4_2C"
-                }
-              },
-              {
-                "type": "sequential",
-                "data": {
-                  "commands": [
-                    {
-                      "type": "wait",
-                      "data": {
-                        "waitTime": 0.5
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Ele_ground"
-                      }
-                    }
-                  ]
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "parallel",
-          "data": {
-            "commands": [
-              {
-                "type": "named",
-                "data": {
-                  "name": "Gim_Ground"
-                }
-              },
-              {
-                "type": "named",
-                "data": {
-                  "name": "LL_Align"
-                }
-              }
-            ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Coral_in"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 1.0
+            "waitTime": 0.8
           }
         },
         {
@@ -232,7 +86,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "A3_5_3C"
+                  "pathName": "A2_2_1C1Ag"
                 }
               },
               {
@@ -242,13 +96,26 @@
                     {
                       "type": "wait",
                       "data": {
-                        "waitTime": 0.2
+                        "waitTime": 0.3
                       }
                     },
                     {
-                      "type": "named",
+                      "type": "parallel",
                       "data": {
-                        "name": "Gim_L3"
+                        "commands": [
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "Gim_Algae"
+                            }
+                          },
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "Ele_power_down"
+                            }
+                          }
+                        ]
                       }
                     }
                   ]
@@ -258,19 +125,31 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "Ele_ground"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "A2_3_1C1Ag"
+          }
+        },
+        {
           "type": "parallel",
           "data": {
             "commands": [
               {
                 "type": "named",
                 "data": {
-                  "name": "Ele_L4"
+                  "name": "LL_Align_Algae"
                 }
               },
               {
                 "type": "named",
                 "data": {
-                  "name": "LL_Align_B"
+                  "name": "Gim_Algae"
                 }
               }
             ]
@@ -279,13 +158,82 @@
         {
           "type": "named",
           "data": {
-            "name": "Coral_out"
+            "name": "Algae_checking"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "A2_4_1C1Ag"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Algae_sensorin"
+                }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 0.5
+                      }
+                    },
+                    {
+                      "type": "parallel",
+                      "data": {
+                        "commands": [
+                          {
+                            "type": "named",
+                            "data": {
+                              "name": "Gim_barge_power_up"
+                            }
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Gim_barge"
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Ele_barge"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Algae_out"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "A3_Auto_Barge",
+  "folder": "A2_Auto_Center",
   "choreoAuto": false
 }

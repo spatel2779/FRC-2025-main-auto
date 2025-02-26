@@ -44,6 +44,7 @@ public class alignStation_a extends Command{
     @Override
     public boolean isFinished() {
     if (timer.get()>wait){
+        System.out.println("Limelight A done");
         return true;
         }
     else{

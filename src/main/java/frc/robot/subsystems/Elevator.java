@@ -4,8 +4,6 @@ import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
-import edu.wpi.first.math.trajectory.TrapezoidProfile;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -23,12 +21,6 @@ public class Elevator extends SubsystemBase{
      private final SparkClosedLoopController LElevatorPID;
      private final SparkClosedLoopController RElevatorPID;
 
-     private final TrapezoidProfile m_Profile = new TrapezoidProfile(new TrapezoidProfile.Constraints(5,3));
-     private TrapezoidProfile.State m_goal = new TrapezoidProfile.State();
-     private TrapezoidProfile.State m_setpoint = new TrapezoidProfile.State();
-     private TrapezoidProfile.State m_currState = new TrapezoidProfile.State();
-     public static DigitalInput Input;
-
 
 
      public Elevator(){
@@ -45,17 +37,17 @@ public class Elevator extends SubsystemBase{
         // Input = new DigitalInput(0);
 
 
-        
+         
 
      }
 
     public void ElevatorUP(Gimbal gimbal, double R2){
-    
+        enc = encoder.getPosition();
 
-        if(gimbal.aenc>90 && gimbal.aenc<225){
-            enc = encoder.getPosition();
+
+        if((gimbal.aenc>90 && gimbal.aenc<225)|| enc<=6 ){
             SmartDashboard.putNumber("encoder", enc);
-            if (enc<75){
+            if (enc<80){
                 LElevator.set( R2*0.4);
                 RElevator.set(R2*0.4);
             }else{
@@ -69,9 +61,10 @@ public class Elevator extends SubsystemBase{
             }
         }   
     public void ElevatorDown(Gimbal gimbal, double L2){
-        if (gimbal.aenc>90 && gimbal.aenc<225){
-            double enc = encoder.getPosition();
-            if (enc>3){
+        double enc = encoder.getPosition();
+        if ((gimbal.aenc>90 && gimbal.aenc<225)|| enc<12){
+            
+            if (enc>5){
                 LElevator.set(-(L2*0.4));
                 RElevator.set(-(L2*0.4));
             }
@@ -95,20 +88,16 @@ public class Elevator extends SubsystemBase{
         LElevatorPID.setReference(Math.toRadians(calcdegree), ControlType.kPosition);         
     }
 
-    public void L2Control(double deg){
-        m_currState = new TrapezoidProfile.State(encoder.getPosition(), encoder.getVelocity());
-        double calcdegree = (1000 * deg)/17.66;
-        m_goal = new TrapezoidProfile.State(Math.toRadians(calcdegree), 0);
-        m_setpoint = m_Profile.calculate(0.02, m_setpoint, m_goal);
-        LElevatorPID.setReference(m_setpoint.position, ControlType.kPosition);
-    }
-
     public void Elevdegwithwait(Gimbal gimbal,double ele_value,double gimbal_pos){
 
         if(Math.toDegrees(gimbal.encoder.getPosition()) < gimbal_pos+2 && Math.toDegrees(gimbal.encoder.getPosition()) > gimbal_pos-2){
             double calcdegree = (1000 * ele_value)/17.66;
             LElevatorPID.setReference(Math.toRadians(calcdegree), ControlType.kPosition);
         }
+    }
+    public void setpower(double pow){
+        LElevator.set(pow);
+        RElevator.set(pow);
     }
 
     }

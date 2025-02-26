@@ -35,7 +35,7 @@ public class elevatorcmd extends Command{
 
     @Override
     public boolean isFinished() {
-    if ((Math.toDegrees(elevator.encoder.getPosition()) < height +5 && Math.toDegrees(elevator.encoder.getPosition()) > height -5)|| timer.get()>3){
+    if (((elevator.encoder.getPosition()) < height +5 && (elevator.encoder.getPosition()) > height -5)|| timer.get()>3){
     return true;
     }else{
     return false;

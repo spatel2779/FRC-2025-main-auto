@@ -47,6 +47,7 @@ public class DriveSubsystem extends SubsystemBase {
     public MAXSwerveModule[] states= new MAXSwerveModule[4];
   public static RobotConfig config;
 
+  public static double OFFSET = 0;
   double xSpeedDelivered;
   double ySpeedDelivered;
   double rotDelivered;
@@ -189,10 +190,12 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void zeroHeading() {
+    OFFSET =0;
     m_gyro.reset();
   }
   public void driveresetHeading() {
     // System.out.println("button pressed");
+    OFFSET =0;
     m_gyro.reset();
   }
 
@@ -205,7 +208,8 @@ public class DriveSubsystem extends SubsystemBase {
     return yaw() * (DriveConstants.kGyroReversed ? -1.0 : 1.0);
   }
   public double yaw(){
-    return (-m_gyro.getYaw());
+
+    return (-m_gyro.getYaw()+OFFSET);
 
   }
 

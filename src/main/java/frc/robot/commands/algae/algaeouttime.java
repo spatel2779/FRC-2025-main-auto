@@ -37,9 +37,11 @@ public class algaeouttime extends Command{
 
     @Override
     public boolean isFinished() {
-    if(timer.get()>wait)
-    return true;
-    else
+    if(timer.get()>wait){
+      System.out.println("Algae is out");
+      return true;
+    }else{
     return false;
   }
+}
 }

@@ -25,7 +25,7 @@ public class elevatorpowupcmd extends Command{
 
     @Override
     public void execute() {
-        elevator.LElevator.set(0.3);
+        elevator.setpower(0.3);
     }
 
     @Override
@@ -37,7 +37,8 @@ public class elevatorpowupcmd extends Command{
 
     @Override
     public boolean isFinished() {
-    if ((Math.toDegrees(elevator.encoder.getPosition()) < height +2 && Math.toDegrees(elevator.encoder.getPosition()) > height -2)|| timer.get()>wait){
+    if (elevator.encoder.getPosition() > height){
+        System.out.println("elevator powered up");
     return true;
     }else{
     return false;
