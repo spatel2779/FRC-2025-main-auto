@@ -30,6 +30,7 @@ import frc.robot.commands.algae.algaeouttime;
 import frc.robot.commands.coral.CoralIntakeCmd;
 import frc.robot.commands.coral.CoralOutCmd;
 import frc.robot.commands.coral.CoralStation;
+import frc.robot.commands.elevator.L3level;
 import frc.robot.commands.elevator.elevatorautocmd;
 import frc.robot.commands.elevator.elevatorpowdowncmd;
 import frc.robot.commands.elevator.elevatorpowupcmd;
@@ -106,7 +107,7 @@ public class RobotContainer {
     NamedCommands.registerCommand("Ele_barge", new elevatorautocmd(elevator, 77));
     NamedCommands.registerCommand("Algae_out", new algaeouttime(algae,2)); 
     NamedCommands.registerCommand("Algae_thrower", new gimbalpowupcmd(gimbal, 225));
-
+    NamedCommands.registerCommand("Coral Station Align",new CoralStation(elevator, gimbal, 6, 15,1.5));
 
 
     autoChooser = AutoBuilder.buildAutoChooser("fwd");
@@ -137,11 +138,11 @@ public class RobotContainer {
 
       new JoystickButton(Driver_1, Button.kL1.value)
       .whileTrue(new ParallelCommandGroup(new RunCommand(
-        ()-> aprilDistance.reeflimelightA(m_robotDrive)), new RunCommand(() -> led.set(0.57))));
+        ()-> aprilDistance.reeflimelightA(m_robotDrive))));
     
       new JoystickButton(Driver_1, Button.kR1.value)
       .whileTrue(new ParallelCommandGroup(new RunCommand(
-        ()-> aprilDistance.reeflimelightB(m_robotDrive)), new RunCommand(() -> led.set(0.73))));// - negative for right side
+        ()-> aprilDistance.reeflimelightB(m_robotDrive))));// - negative for right side
         // ()-> aprilDistance.reeflimelightB(m_robotDrive)));
     
     new JoystickButton(Driver_1, Button.kSquare.value)
@@ -172,7 +173,7 @@ public class RobotContainer {
     //   new levelsecondbase(elevator, gimbal, 12, 190, 0.5));
     //L3
     new POVButton(Driver_2, 0).onTrue(
-      new levels(elevator, gimbal, 20, 210,0.5));
+      new L3level(elevator, gimbal, 210, 20, 6));
     // //L4
     new POVButton(Driver_2, 90).onTrue(
       new levels(elevator, gimbal, 69, 190,0.5));
@@ -198,7 +199,7 @@ public class RobotContainer {
       new levels(elevator, gimbal, 25, 110,0.5));//tested
 
       new JoystickButton(Driver_2, Button.kR1.value).onTrue(
-        new CoralStation(elevator, gimbal, 8, 15,2));
+        new CoralStation(elevator, gimbal, 6, 15,4));
     
 
     // new JoystickButton(Driver_1, Button.kSquare.value)
@@ -207,12 +208,12 @@ public class RobotContainer {
 
     //buttonfor coral intake
     new JoystickButton(Driver_2, Button.kCircle.value).whileTrue(
-      new ParallelCommandGroup(new RunCommand(() -> coral.Take(0.6),coral),new RunCommand(()-> led.set(-0.11))));
+      new ParallelCommandGroup(new RunCommand(() -> coral.Take(0.6),coral)));
       //Red Right in
     
       //button for coral outtake
     new JoystickButton(Driver_2, Button.kCross.value).whileTrue(
-      new ParallelCommandGroup(new RunCommand(() -> coral.Take(-0.6),coral),new RunCommand(()-> led.set(-0.29))));
+      new ParallelCommandGroup(new RunCommand(() -> coral.Take(-0.6),coral)));
        //blue left out
     
        // new JoystickButton(Driver_2, Button.kCross.value).onTrue

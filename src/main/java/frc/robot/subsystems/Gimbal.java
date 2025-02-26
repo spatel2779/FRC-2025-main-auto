@@ -82,6 +82,10 @@ public class Gimbal extends SubsystemBase{
         Gimablmotor.set(0);
     }
 
+    public void GimbalPower(double val){
+        Gimablmotor.set(val);
+    }
+
     // public void algaepreset(){
     //     gimbaldeg(1.1);
     // }

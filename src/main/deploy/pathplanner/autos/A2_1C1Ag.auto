@@ -17,26 +17,13 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "Gim_power_up"
+                  "name": "Gim_L3"
                 }
               },
               {
-                "type": "sequential",
+                "type": "named",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Gim_L3"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Ele_power_up"
-                      }
-                    }
-                  ]
+                  "name": "Ele_power_up"
                 }
               }
             ]
@@ -100,7 +87,7 @@
                           {
                             "type": "named",
                             "data": {
-                              "name": "Ele_power_down"
+                              "name": "Ele_ground"
                             }
                           }
                         ]
@@ -110,12 +97,6 @@
                 }
               }
             ]
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Ele_ground"
           }
         },
         {

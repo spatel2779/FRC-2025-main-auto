@@ -11,7 +11,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "A3_1_3C"
+                  "pathName": "A3_1_2C"
                 }
               },
               {
@@ -200,7 +200,7 @@
               {
                 "type": "path",
                 "data": {
-                  "pathName": "A3_5_3C"
+                  "pathName": "A3_4_2C"
                 }
               },
               {
@@ -258,6 +258,25 @@
                 "type": "named",
                 "data": {
                   "name": "LL_Align"
+                }
+              },
+              {
+                "type": "sequential",
+                "data": {
+                  "commands": [
+                    {
+                      "type": "wait",
+                      "data": {
+                        "waitTime": 0.1
+                      }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Coral Station Align"
+                      }
+                    }
+                  ]
                 }
               }
             ]

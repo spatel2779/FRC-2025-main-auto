@@ -99,7 +99,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
     SmartDashboard.putNumber("Gyrovalteleop",  m_robotContainer.m_robotDrive.yaw());
 
-    m_robotContainer.led.set(-0.87);
+    // m_robotContainer.led.set(-0.87);
     // double voltage = m_pdp.getVoltage();
     // SmartDashboard.putNumber("Voltage", voltage);
     // double temperatureCelsius = m_pdp.getTemperature();
@@ -147,13 +147,13 @@ public class Robot extends TimedRobot {
 
     }
 
-    if(m_robotContainer.aprilDistance.hasTargetA() && m_robotContainer.aprilDistance.hasTargetB()){
-      m_robotContainer.led.set(0.73);
-    }else if(m_robotContainer.aprilDistance.hasTargetA()){
-      m_robotContainer.led.set(-0.15);
-    }else if(m_robotContainer.aprilDistance.hasTargetB()){
-      m_robotContainer.led.set(-0.11);
-    }
+    // if(m_robotContainer.aprilDistance.hasTargetA() && m_robotContainer.aprilDistance.hasTargetB()){
+    //   m_robotContainer.led.set(0.73);
+    // }else if(m_robotContainer.aprilDistance.hasTargetA()){
+    //   m_robotContainer.led.set(-0.15);
+    // }else if(m_robotContainer.aprilDistance.hasTargetB()){
+    //   m_robotContainer.led.set(-0.11);
+    // }
   }
   @Override
   public void teleopExit() {}

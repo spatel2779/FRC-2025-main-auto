@@ -150,7 +150,6 @@ public class Limelight3DDistance extends SubsystemBase{
 }
 
 public void stationlimelight(DriveSubsystem m_robotDrive){
-    limelightTable.getEntry("ledMode").setNumber(0);
     double[] botval= limelightTable.getEntry("targetpose_cameraspace").getDoubleArray(new double[6]);
     double llfront_detect = limelightTable.getEntry("tv").getInteger(0);
     if (llfront_detect>0){
@@ -171,7 +170,6 @@ public void stationlimelight(DriveSubsystem m_robotDrive){
         
         
     }else{
-        limelightTable.getEntry("ledMode").setNumber(1);
         m_robotDrive.drive(0,0,0, true,false);
     } 
 }
