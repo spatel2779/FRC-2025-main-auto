@@ -3,24 +3,23 @@ package frc.robot.commands.elevator;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.commands.gimbal.gimbalpowupcmd;
 import frc.robot.subsystems.Elevator;
 import frc.robot.subsystems.Gimbal;
 
-public class L3level extends Command{
+public class levelsauto extends Command{
     public Elevator ele;
     public Gimbal gim;
     private double deg;
-    private double gimdeg;
+    double gimbaldeg;
     Timer timer;
     double time;
 
-    public L3level(Elevator elev, Gimbal gimb, double gimdegree, double eledeg,double time){
+    public levelsauto(Elevator elev, Gimbal gimb, double eledeg,double gimdeg,double time){
         this.ele = elev;
         this.gim = gimb;
         this.deg = eledeg;
+        this.gimbaldeg = gimdeg;
         this.time = time;
-        this.gimdeg = gimdegree;
         addRequirements(elev,gimb);
     }
 
@@ -34,29 +33,26 @@ public class L3level extends Command{
 
     @Override
     public void execute() {
-        if(Math.toDegrees(gim.encoder.getPosition())>= 115 && ele.encoder.getPosition() >=10){
-            ele.ElevDegree(deg);
-            gim.gimbaldeg(gimdeg);
-
+        if(Math.toDegrees(gim.encoder.getPosition())>115){
+        gim.gimbaldeg(gimbaldeg);
+        // if(timer.get()>time && ((Math.toDegrees(gim.encoder.getPosition())< gimbaldeg +5) && Math.toDegrees(gim.encoder.getPosition())> gimbaldeg-5)){
+        ele.ElevDegree(deg);
+        
         }
-        else if(Math.toDegrees(gim.encoder.getPosition())< 115 && ele.encoder.getPosition() <10) {
-            ele.setpower(0.3);
-            gim.GimbalPower(0.25);
-            }
-        }
+    }
 
+// }
     @Override
     public void end(boolean interrupted) {
-        ele.setzeropower();
         gim.gimbalzero();
+        ele.setzeropower();
         timer.stop();
         timer.reset();
-
     }
 
     @Override
     public boolean isFinished() {
-        if(((ele.encoder.getPosition()<deg+2 && ele.encoder.getPosition()>deg-2)&& (gim.encoder.getPosition()<gimdeg+2 && gim.encoder.getPosition()>gimdeg-2)) || timer.get()>time){
+        if(ele.encoder.getPosition()<deg+2 && ele.encoder.getPosition()>deg-2){
             System.out.println("outside the cmd");
             return true;
         }else{
@@ -64,7 +60,5 @@ public class L3level extends Command{
         }
   }
 
+    
 }
-
-
-

@@ -7,19 +7,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "A2_2_1C1Ag"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "Gim_safe"
+            "pathName": "A3_1_3C"
           }
         }
       ]
     }
   },
   "resetOdom": true,
-  "folder": "Auto-testing",
+  "folder": "A3_Auto_Barge",
   "choreoAuto": false
 }

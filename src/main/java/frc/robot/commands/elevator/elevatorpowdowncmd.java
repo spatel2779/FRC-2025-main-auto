@@ -8,12 +8,10 @@ public class elevatorpowdowncmd extends Command{
     public Elevator elevator;
     public double height;
     public Timer timer;
-    private double wait;
 
     public elevatorpowdowncmd(Elevator elevatormove, double move, double time){
         this.elevator = elevatormove;
         this.height = move;
-        this.wait = time;
     }
 
     @Override

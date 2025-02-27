@@ -30,13 +30,12 @@ import frc.robot.commands.algae.algaeouttime;
 import frc.robot.commands.coral.CoralIntakeCmd;
 import frc.robot.commands.coral.CoralOutCmd;
 import frc.robot.commands.coral.CoralStation;
-import frc.robot.commands.elevator.L3level;
 import frc.robot.commands.elevator.elevatorautocmd;
 import frc.robot.commands.elevator.elevatorpowdowncmd;
 import frc.robot.commands.elevator.elevatorpowupcmd;
 import frc.robot.commands.elevator.elevepowup_gim_alg;
 import frc.robot.commands.elevator.levels;
-import frc.robot.commands.elevator.levelsecondbase;
+import frc.robot.commands.elevator.levelsauto;
 import frc.robot.commands.gimbal.Gimbalcmd;
 import frc.robot.commands.gimbal.gimbalpowdowncmd;
 import frc.robot.commands.gimbal.gimbalpowupcmd;
@@ -85,17 +84,17 @@ public class RobotContainer {
     
     NamedCommands.registerCommand("Algae_sensorin", new algaeintaketime(algae,4,algaeSensor)); 
     NamedCommands.registerCommand("Algae_out", new algaeouttime(algae,1)); 
-    NamedCommands.registerCommand("Gim_L3", new Gimbalcmd(gimbal, 195)); //190  185
-    NamedCommands.registerCommand("Ele_L4", new elevatorautocmd(elevator, 69)); // 67
+    NamedCommands.registerCommand("Gim_L3", new Gimbalcmd(gimbal, 195, 2)); //190  185
+    NamedCommands.registerCommand("Ele_L4", new elevatorautocmd(elevator, 69,2)); // 67
     NamedCommands.registerCommand("Coral_in", new CoralIntakeCmd(coral, 1));
-    NamedCommands.registerCommand("Coral_out", new CoralOutCmd(coral, 0.5));
-    NamedCommands.registerCommand("Ele_ground", new elevatorautocmd(elevator, 3)); //5
-    NamedCommands.registerCommand("Gim_Ground", new Gimbalcmd(gimbal, 15));
-    NamedCommands.registerCommand("Gim_Algae", new Gimbalcmd(gimbal, 120));
-    NamedCommands.registerCommand("LL_Align_A", new alignStation_a(aprilDistance, m_robotDrive, 1.5));
+    NamedCommands.registerCommand("Coral_out", new CoralOutCmd(coral, 0.2));
+    NamedCommands.registerCommand("Ele_ground", new elevatorautocmd(elevator, 3,1.5)); //5
+    NamedCommands.registerCommand("Gim_Ground", new Gimbalcmd(gimbal, 15, 2));
+    NamedCommands.registerCommand("Gim_Algae", new Gimbalcmd(gimbal, 120, 2));
+    NamedCommands.registerCommand("LL_Align_A", new alignStation_a(aprilDistance, m_robotDrive, 1.5,1));
     NamedCommands.registerCommand("LL_Align_B", new alignStation_b(aprilDistance, m_robotDrive, 1.5));
     NamedCommands.registerCommand("LL_Align_Algae", new alignStation_b_algae(aprilDistance, m_robotDrive, 2.5));
-    NamedCommands.registerCommand("LL_Align", new alignStation(aprilDistance, m_robotDrive, 1.2));
+    NamedCommands.registerCommand("LL_Align", new alignStation(aprilDistance, m_robotDrive, 1.5));
     NamedCommands.registerCommand("Gim_power_up", new gimbalpowupcmd(gimbal, 120));
     NamedCommands.registerCommand("Gim_power_down", new gimbalpowdowncmd(gimbal, 120));
     NamedCommands.registerCommand("Ele_power_up", new elevatorpowupcmd(elevator, 30, 1.5));
@@ -103,11 +102,21 @@ public class RobotContainer {
     NamedCommands.registerCommand("Algae_checking", new elevepowup_gim_alg(elevator, gimbal, 120, algaeSensor, algae, 2.5, 30));
     NamedCommands.registerCommand("Ele_barge_power_up", new elevatorpowupcmd(elevator, 43, 2));
     NamedCommands.registerCommand("Gim_barge_power_up", new gimbalpowupcmd(gimbal, 195));
-    NamedCommands.registerCommand("Gim_barge", new Gimbalcmd(gimbal, 210));
-    NamedCommands.registerCommand("Ele_barge", new elevatorautocmd(elevator, 77));
+    NamedCommands.registerCommand("Gim_barge", new Gimbalcmd(gimbal, 210, 2));
+    NamedCommands.registerCommand("Ele_barge", new elevatorautocmd(elevator, 77, 2));
     NamedCommands.registerCommand("Algae_out", new algaeouttime(algae,2)); 
     NamedCommands.registerCommand("Algae_thrower", new gimbalpowupcmd(gimbal, 225));
     NamedCommands.registerCommand("Coral Station Align",new CoralStation(elevator, gimbal, 6, 15,1.5));
+    NamedCommands.registerCommand("Gim_L3_fast", new Gimbalcmd(gimbal, 195, 2)); //190  185
+    NamedCommands.registerCommand("Ele_L4_fast", new levelsauto(elevator, gimbal, 69, 190,2)); // 67
+    NamedCommands.registerCommand("LL_Align_A_fast", new alignStation_a(aprilDistance, m_robotDrive, 1.2, 1));
+    NamedCommands.registerCommand("Ele_ground_fast", new elevatorautocmd(elevator, 3,1.5)); //5
+    NamedCommands.registerCommand("Gim_Ground_fast", new Gimbalcmd(gimbal, 15, 1.5));
+    NamedCommands.registerCommand("LL_Align_fast", new alignStation(aprilDistance, m_robotDrive, 1));
+    NamedCommands.registerCommand("Coral_in_fast", new CoralIntakeCmd(coral, 1));
+    NamedCommands.registerCommand("LL_Align_B_fast", new alignStation_b(aprilDistance, m_robotDrive, 1.5));
+    NamedCommands.registerCommand("Gim_safe", new Gimbalcmd(gimbal, 130, 0.5)); 
+
 
 
     autoChooser = AutoBuilder.buildAutoChooser("fwd");
@@ -138,7 +147,7 @@ public class RobotContainer {
 
       new JoystickButton(Driver_1, Button.kL1.value)
       .whileTrue(new ParallelCommandGroup(new RunCommand(
-        ()-> aprilDistance.reeflimelightA(m_robotDrive))));
+        ()-> aprilDistance.reeflimelightA(m_robotDrive,1))));
     
       new JoystickButton(Driver_1, Button.kR1.value)
       .whileTrue(new ParallelCommandGroup(new RunCommand(
@@ -150,88 +159,59 @@ public class RobotContainer {
       
     new JoystickButton(Driver_1, Button.kTriangle.value)
     .whileTrue(new RunCommand( ()-> aprilDistance.reeflimelightB_algae(m_robotDrive), m_robotDrive));
-//TODO
-    // new POVButton(Driver_1, 180)
-    // .onTrue(new ParallelCommandGroup(
-    //   new algaeouttime(algae,2),  new gimbalpowupcmd(gimbal, 225))
-    // );
-//---------------
-
-    // new JoystickButton(Driver_1, Button.kSquare.value)
-    // .whileFalse(new RunCommand( ()-> aprilDistance.limelightTable.getEntry("ledMode").setNumber(1), aprilDistance));
-
 
     // /*Mechanism Control for Driver 2*/
 
     // POV for Elevator position 
     //ground
     new POVButton(Driver_2, 180).onTrue(
-      new levels(elevator, gimbal, 4, 100,0.5));
+      new levels(elevator, gimbal, 4, 120,0));
     //L2
-    // new POVButton(Driver_2, 270).onTrue(
-    //   // new RunCommand(()->elevator.degele(10)));
-    //   new levelsecondbase(elevator, gimbal, 12, 190, 0.5));
+    new POVButton(Driver_2, 270).onTrue(
+        new levels(elevator, gimbal, 6, 195, 0.5));
     //L3
     new POVButton(Driver_2, 0).onTrue(
-      new L3level(elevator, gimbal, 210, 20, 6));
-    // //L4
+      new levels(elevator, gimbal, 20, 210, 0));
+    // // //L4
     new POVButton(Driver_2, 90).onTrue(
-      new levels(elevator, gimbal, 69, 190,0.5));
-
-    // // Coral Presets
-    // new JoystickButton(Driver_2, Button.kOptions.value)
-    // .onTrue(new RunCommand(()-> gimbal.gimbaldeg(12)));
+      new levels(elevator, gimbal, 71, 190,0));
 
     //manual gimbal control 
     new Trigger(() -> Driver_2.getRightY()<-0.1).whileTrue(
       new RunCommand(() -> gimbal.gimbalpowup(Math.abs(Driver_2.getRightY()),elevator), gimbal));
 
     new Trigger(() -> Driver_2.getRightY()>0.1).whileTrue(
-      new RunCommand(() -> gimbal.gimbalpowdown(Driver_2.getRightY()), gimbal));
-
-
-    // //L2 algae intake
-    // new JoystickButton(Driver_2, Button.kR1.value).onTrue(
-    //   new RunCommand(()->gimbal.gimbaldeg(110), gimbal));//tested
+      new RunCommand(() -> gimbal.gimbalpowdown(Driver_2.getRightY(), elevator), gimbal));
     
     //L3 algae intake
     new JoystickButton(Driver_2, Button.kL1.value).onTrue(
       new levels(elevator, gimbal, 25, 110,0.5));//tested
 
       new JoystickButton(Driver_2, Button.kR1.value).onTrue(
-        new CoralStation(elevator, gimbal, 6, 15,4));
-    
-
-    // new JoystickButton(Driver_1, Button.kSquare.value)
-    // .whileTrue(new RunCommand(() -> aprilDistance.reeflimelight(m_robotDrive), aprilDistance));
-
+        new CoralStation(elevator, gimbal, 4, 15,4));
 
     //buttonfor coral intake
     new JoystickButton(Driver_2, Button.kCircle.value).whileTrue(
-      new ParallelCommandGroup(new RunCommand(() -> coral.Take(0.6),coral)));
+      (new RunCommand(() -> coral.Take(0.9),coral)));
       //Red Right in
     
       //button for coral outtake
     new JoystickButton(Driver_2, Button.kCross.value).whileTrue(
-      new ParallelCommandGroup(new RunCommand(() -> coral.Take(-0.6),coral)));
+      (new RunCommand(() -> coral.Take(-0.9),coral)));
        //blue left out
     
-       // new JoystickButton(Driver_2, Button.kCross.value).onTrue
-    // (new elevepowup_gim_alg(elevator, gimbal, 120, algaeSensor, algae, 5, 30));
-
     //button for algae intake
-    // new JoystickButton(Driver_2, Button.kSquare.value).whileTrue(
-    //   new RunCommand(() -> algae.Take(-0.6),algae)); // Green  
+    new JoystickButton(Driver_2, Button.kSquare.value).whileTrue(
+      new RunCommand(() -> algae.Take(-0.6),algae)); // Green  
     //button for algae outtake
     new JoystickButton(Driver_2, Button.kTriangle.value).whileTrue(
       new RunCommand(() -> algae.Take(1),algae));//yellow
- 
 
     //manual elevator control 
-    new Trigger(() -> Math.abs(Driver_2.getLeftTriggerAxis())>0.1)
+    new Trigger(() -> Math.abs(Driver_2.getLeftTriggerAxis())>0.2)
     .whileTrue(new RunCommand(() -> elevator.ElevatorDown(gimbal, Driver_2.getLeftTriggerAxis()), elevator));
     
-    new Trigger(() -> Math.abs(Driver_2.getRightTriggerAxis())>0.1)
+    new Trigger(() -> Math.abs(Driver_2.getRightTriggerAxis())>0.2)
     .whileTrue(new RunCommand(() -> elevator.ElevatorUP(gimbal, Driver_2.getRightTriggerAxis()), elevator));
     }
 

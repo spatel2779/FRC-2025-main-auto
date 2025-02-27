@@ -23,7 +23,7 @@ public class llaligntoreef extends Command {
     }
     @Override
     public void execute() {
-        limelight3dDistance.reeflimelightA(driveSubsystem);
+        limelight3dDistance.reeflimelightA(driveSubsystem,1);
         SmartDashboard.putBoolean("llrefcommand", true);
     }
 

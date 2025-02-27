@@ -17,7 +17,7 @@
               {
                 "type": "named",
                 "data": {
-                  "name": "Gim_L3_fast"
+                  "name": "Gim_safe"
                 }
               }
             ]
@@ -73,6 +73,12 @@
                       "data": {
                         "name": "Ele_ground_fast"
                       }
+                    },
+                    {
+                      "type": "named",
+                      "data": {
+                        "name": "Gim_safe"
+                      }
                     }
                   ]
                 }
@@ -97,22 +103,9 @@
                 }
               },
               {
-                "type": "sequential",
+                "type": "named",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "wait",
-                      "data": {
-                        "waitTime": 1.0
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Coral_in_fast"
-                      }
-                    }
-                  ]
+                  "name": "Coral_in_fast"
                 }
               }
             ]
@@ -237,25 +230,18 @@
                 }
               },
               {
-                "type": "sequential",
+                "type": "named",
                 "data": {
-                  "commands": [
-                    {
-                      "type": "wait",
-                      "data": {
-                        "waitTime": 1.0
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Coral_in_fast"
-                      }
-                    }
-                  ]
+                  "name": "Coral_in_fast"
                 }
               }
             ]
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.25
           }
         },
         {

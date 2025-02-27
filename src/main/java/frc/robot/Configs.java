@@ -46,8 +46,8 @@ public static final class ElevatorModule{
     public static final SparkMaxConfig RelevatorConfig = new SparkMaxConfig();
     public static final SparkMaxConfig LelevatorConfig = new SparkMaxConfig();
     static{
-        LelevatorConfig.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder).pid(0.03,0,0).velocityFF(0.001).outputRange(-1,1);
-        RelevatorConfig.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder).pid(0.03,0,0).velocityFF(0.001).outputRange(-1,1); 
+        LelevatorConfig.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder).pid(0.15,0,0.25).velocityFF(0.001).outputRange(-1,1);
+        RelevatorConfig.closedLoop.feedbackSensor(FeedbackSensor.kPrimaryEncoder).pid(0.15,0,0.25).velocityFF(0.001).outputRange(-1,1); 
         LelevatorConfig.encoder.positionConversionFactor(1).velocityConversionFactor(1);
         LelevatorConfig.closedLoop.positionWrappingEnabled(false);
         RelevatorConfig.follow(9,false);
@@ -64,7 +64,7 @@ public static final class GimabalModule{
     public static final SparkMaxConfig GimbalMotorConfig = new SparkMaxConfig();
     public static final SparkMaxConfig GImbalMotorConfig1 = new SparkMaxConfig();
     static{
-        GimbalMotorConfig.closedLoop.feedbackSensor(FeedbackSensor.kAbsoluteEncoder).pid(0.4,0,0).velocityFF(0.01).outputRange(-1,1);
+        GimbalMotorConfig.closedLoop.feedbackSensor(FeedbackSensor.kAbsoluteEncoder).pid(0.45,0,0.65).velocityFF(0.01).outputRange(-1,1);
         GimbalMotorConfig.absoluteEncoder.positionConversionFactor(2*Math.PI).velocityConversionFactor(2*Math.PI/60);
         GimbalMotorConfig.closedLoop.positionWrappingEnabled(false);
         GImbalMotorConfig1.follow(13, true);

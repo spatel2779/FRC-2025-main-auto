@@ -23,7 +23,7 @@ public class CoralOutCmd extends Command{
 
     @Override
     public void execute() {
-        coral_s.Take(-0.6);
+        coral_s.Take(-0.9);
 
     }
 

@@ -21,8 +21,6 @@ public class Gimbal extends SubsystemBase{
     public RelativeEncoder motorencoder1;
 
      private final SparkClosedLoopController GimbalPID;
-     private final SparkClosedLoopController GimbalPID2;
-
      
 
      public Gimbal(){
@@ -31,7 +29,6 @@ public class Gimbal extends SubsystemBase{
         motorencoder1 = Gimablmotor2.getEncoder();
         encoder = Gimablmotor.getAbsoluteEncoder();
         GimbalPID = Gimablmotor.getClosedLoopController();
-        GimbalPID2 = Gimablmotor2.getClosedLoopController();
 
         Gimablmotor.configure(Configs.GimabalModule.GimbalMotorConfig,null, null);
         Gimablmotor2.configure(Configs.GimabalModule.GImbalMotorConfig1, null, null);
@@ -48,15 +45,24 @@ public class Gimbal extends SubsystemBase{
         
         
         }
-        public void gimbalpowdown(double joystick){
+        public void gimbalpowdown(double joystick, Elevator ele){
             aenc = encoder.getPosition();
             aenc = Math.toDegrees(aenc);
-           
-            if (aenc >17) {
-            Gimablmotor.set(-joystick*0.4);
-            }else{
-                Gimablmotor.set(0);
-            }
+           if(ele.encoder.getPosition()<=12){
+                if (aenc >17) {
+                Gimablmotor.set(-joystick*0.5);
+                }else{
+                    Gimablmotor.set(0);
+                }
+        }else if (ele.encoder.getPosition()>12){
+            if (aenc >=110) {
+                Gimablmotor.set(-joystick*0.5);
+                }else{
+                    Gimablmotor.set(0);
+                }
+        }else{
+
+        }
 
         }
         public void gimbalpowup(double joystick, Elevator elevator){
@@ -64,10 +70,10 @@ public class Gimbal extends SubsystemBase{
             aenc = Math.toDegrees(aenc);
 
             if(aenc <=235 && elevator.encoder.getPosition()>10){
-            Gimablmotor.set(joystick*0.4);
+            Gimablmotor.set(joystick*0.5);
             }
-            else if(aenc<120){
-            Gimablmotor.set(joystick*0.4);
+            else if(aenc<180){
+            Gimablmotor.set(joystick*0.5);
             }
             else{
                 Gimablmotor.set(0);

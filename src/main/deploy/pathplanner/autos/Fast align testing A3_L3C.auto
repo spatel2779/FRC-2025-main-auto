@@ -1,0 +1,57 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "path",
+                "data": {
+                  "pathName": "A3_1_3C"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "Gim_safe"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "parallel",
+          "data": {
+            "commands": [
+              {
+                "type": "named",
+                "data": {
+                  "name": "Ele_L4_fast"
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "LL_Align_A_fast"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "Coral_out"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "A3_Auto_Barge",
+  "choreoAuto": false
+}

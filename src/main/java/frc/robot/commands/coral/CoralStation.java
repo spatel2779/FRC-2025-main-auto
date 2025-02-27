@@ -50,12 +50,9 @@ public class CoralStation extends Command{
 
     @Override
     public boolean isFinished() {
-        if(timer.get()>time){
-            System.out.println("outside the cmd");
-            return true;
-        }else{
+
             return false;
-        }
+        
   }
 
     

@@ -15,11 +15,13 @@ public class alignStation_a extends Command{
     public Timer timer;
     public double temptimer;
     public double wait;
+    private double speed;
 
-    public alignStation_a(Limelight3DDistance llm1, DriveSubsystem roboDrive,double wait){
+    public alignStation_a(Limelight3DDistance llm1, DriveSubsystem roboDrive,double wait, double speedMulti){
         this.llm = llm1;
         this.m_robotDrive = roboDrive;
         this.wait = wait;
+        this.speed = speedMulti;
     }
 
     @Override
@@ -31,7 +33,7 @@ public class alignStation_a extends Command{
 
     @Override
     public void execute() {
-        llm.reeflimelightA(m_robotDrive);
+        llm.reeflimelightA(m_robotDrive,speed);
         
     }
 

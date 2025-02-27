@@ -8,10 +8,13 @@ public class elevatorautocmd extends Command{
     public Elevator elevator;
     public double height;
     public Timer timer;
+    private double time;
 
-    public elevatorautocmd(Elevator elevatormove, double move){
+    public elevatorautocmd(Elevator elevatormove, double move, double timetaken){
         this.elevator = elevatormove;
         this.height = move;
+        this.time = timetaken;
+
     }
 
     @Override
@@ -35,7 +38,7 @@ public class elevatorautocmd extends Command{
 
     @Override
     public boolean isFinished() {
-    if (((elevator.encoder.getPosition()) < height +3 && (elevator.encoder.getPosition()) > height -3)|| timer.get()>2){
+    if (((elevator.encoder.getPosition()) < height +3 && (elevator.encoder.getPosition()) > height -3)|| timer.get()>time){
         System.out.println("Elevator at: "+elevator.encoder.getPosition());
         return true;
     }else{

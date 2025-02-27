@@ -6,7 +6,6 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -98,29 +97,6 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     SmartDashboard.putNumber("Gyrovalteleop",  m_robotContainer.m_robotDrive.yaw());
-
-    // m_robotContainer.led.set(-0.87);
-    // double voltage = m_pdp.getVoltage();
-    // SmartDashboard.putNumber("Voltage", voltage);
-    // double temperatureCelsius = m_pdp.getTemperature();
-    // SmartDashboard.putNumber("Temperature", temperatureCelsius);
-    //   // Get the total current of all channels.
-    //   double totalCurrent = m_pdp.getTotalCurrent();
-    //   SmartDashboard.putNumber("Total Current", totalCurrent);
-  
-    //   // Get the total power of all channels.
-    //   // Power is the bus voltage multiplied by the current with the units Watts.
-    //   double totalPower = m_pdp.getTotalPower();
-    //   SmartDashboard.putNumber("Total Power", totalPower);
-  
-    //   // Get the total energy of all channels.
-    //   // Energy is the power summed over time with units Joules.
-    //   double totalEnergy = m_pdp.getTotalEnergy();
-    //   SmartDashboard.putNumber("Total Energy", totalEnergy);
-    //   double current8 = m_pdp.getCurrent(8);
-    //   SmartDashboard.putNumber("Current Channel 8", current8);
-
-
     if (m_robotContainer.Driver_1.getLeftTriggerAxis()>0.1){
         DriveConstants.kMaxSpeedMetersPerSecond = DriveConstants.kFastSpeedMetersPerSecond*(1-m_robotContainer.Driver_1.getLeftTriggerAxis()) ;
       }

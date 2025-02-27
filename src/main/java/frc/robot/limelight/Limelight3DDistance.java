@@ -2,9 +2,6 @@ package frc.robot.limelight;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.motorcontrol.Spark;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.LimelightHelpers;
 import frc.robot.subsystems.DriveSubsystem;
@@ -17,7 +14,6 @@ public class Limelight3DDistance extends SubsystemBase{
     private Double valueA;
     private Double valueB;
     private Double ValueS;
-    private Timer timer; 
 
 
     public Limelight3DDistance() {
@@ -100,25 +96,14 @@ public class Limelight3DDistance extends SubsystemBase{
             stoprobot(m_robotDrive);
         }
     }
-    public void reeflimelightA(DriveSubsystem m_robotDrive){
+    public void reeflimelightA(DriveSubsystem m_robotDrive, double SpeedMulti){
     double[] botval= limelightTablefrontA.getEntry("targetpose_cameraspace").getDoubleArray(new double[6]);
     double llfront_detect = limelightTablefrontA.getEntry("tv").getInteger(0);
-    if (llfront_detect>0){
-
-        double tx = limelightTablefrontA.getEntry("tx").getDouble(0.0);   
-        double ty = limelightTablefrontA.getEntry("ty").getDouble(0.0); 
-        double tz = limelightTablefrontA.getEntry("tz").getDouble(0.0);   
-
-
-        SmartDashboard.putNumber("tx", botval[0]);
-        SmartDashboard.putNumber("ty", botval[1]);
-        SmartDashboard.putNumber("tz", botval[2]);
-        SmartDashboard.putNumber("pitch", botval[3]);
-        SmartDashboard.putNumber("yaw", botval[4]);
-        SmartDashboard.putNumber("roll", botval[5]);
-        m_robotDrive.drive((botval[2]-0.6)*0.3, (-(botval[0]))*1.2,-(cleanerA(valueA, botval[4])*0.03), false,true);
-        
-        
+    if (llfront_detect>0){ 
+        m_robotDrive.drive((botval[2]-0.6)*0.3*SpeedMulti, (-(botval[0]))*1.2*SpeedMulti,-(cleanerA(valueA, botval[4])*0.03), false,true);
+// Positive is left rot, negative is right rot. 
+// Negative is back and positive is forward (xspeed) (fwd and back)
+// Positive is right and negative is left (yspeed) (left and right)
     }else{
         m_robotDrive.drive(0,0,0, true,false);
     } 
@@ -128,18 +113,6 @@ public class Limelight3DDistance extends SubsystemBase{
         double[] botval= limelightTablefrontB.getEntry("targetpose_cameraspace").getDoubleArray(new double[6]);
         double llfront_detect = limelightTablefrontB.getEntry("tv").getInteger(0);
         if (llfront_detect>0){
-    
-            double tx = limelightTablefrontB.getEntry("tx").getDouble(0.0);   
-            double ty = limelightTablefrontB.getEntry("ty").getDouble(0.0); 
-            double tz = limelightTablefrontB.getEntry("tz").getDouble(0.0);   
-    
-    
-            SmartDashboard.putNumber("tx", botval[0]);
-            SmartDashboard.putNumber("ty", botval[1]);
-            SmartDashboard.putNumber("tz", botval[2]);
-            SmartDashboard.putNumber("pitch", botval[3]);
-            SmartDashboard.putNumber("yaw", botval[4]);
-            SmartDashboard.putNumber("roll", botval[5]);
             m_robotDrive.drive((botval[2]-0.6)*0.3, (-botval[0])*1.2,-(cleanerB(valueB, botval[4])*0.03), false,true);
             
             
@@ -153,19 +126,6 @@ public void stationlimelight(DriveSubsystem m_robotDrive){
     double[] botval= limelightTable.getEntry("targetpose_cameraspace").getDoubleArray(new double[6]);
     double llfront_detect = limelightTable.getEntry("tv").getInteger(0);
     if (llfront_detect>0){
-
-        double tx = limelightTable.getEntry("tx").getDouble(0.0);   
-        double ty = limelightTable.getEntry("ty").getDouble(0.0); 
-        double tz = limelightTable.getEntry("tz").getDouble(0.0);   
-
-
-        SmartDashboard.putNumber("tx", botval[0]);
-        SmartDashboard.putNumber("ty", botval[1]);
-        SmartDashboard.putNumber("tz", botval[2]);
-        SmartDashboard.putNumber("pitch", botval[3]);
-        SmartDashboard.putNumber("yaw", botval[4]);
-        SmartDashboard.putNumber("roll", botval[5]);
-
         m_robotDrive.drive(-(botval[2]-0.3)*0.4,  (botval[0])*1.2, -(cleanerB(ValueS, botval[4])*0.03), false,true);
         
         
@@ -178,18 +138,6 @@ public void stationlimelight(DriveSubsystem m_robotDrive){
         double[] botval= limelightTablefrontB.getEntry("targetpose_cameraspace").getDoubleArray(new double[6]);
         double llfront_detect = limelightTablefrontB.getEntry("tv").getInteger(0);
         if (llfront_detect>0){
-    
-            double tx = limelightTablefrontB.getEntry("tx").getDouble(0.0);   
-            double ty = limelightTablefrontB.getEntry("ty").getDouble(0.0); 
-            double tz = limelightTablefrontB.getEntry("tz").getDouble(0.0);   
-    
-    
-            SmartDashboard.putNumber("tx", botval[0]);
-            SmartDashboard.putNumber("ty", botval[1]);
-            SmartDashboard.putNumber("tz", botval[2]);
-            SmartDashboard.putNumber("pitch", botval[3]);
-            SmartDashboard.putNumber("yaw", botval[4]);
-            SmartDashboard.putNumber("roll", botval[5]);
             m_robotDrive.drive((botval[2]-0.1)*0.2, (-(botval[0]-0.2150))*1.1,-(cleanerA(valueB, botval[4])*0.03), false,true);
             
             

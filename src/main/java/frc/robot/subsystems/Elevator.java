@@ -19,7 +19,6 @@ public class Elevator extends SubsystemBase{
     
 
      private final SparkClosedLoopController LElevatorPID;
-     private final SparkClosedLoopController RElevatorPID;
 
 
 
@@ -28,13 +27,11 @@ public class Elevator extends SubsystemBase{
         encoder = LElevator.getEncoder();
         RElevator = new SparkMax(10,MotorType.kBrushless);
         LElevatorPID = LElevator.getClosedLoopController();
-        RElevatorPID = RElevator.getClosedLoopController();
         LElevator.configure(Configs.ElevatorModule.LelevatorConfig,null, null);
         RElevator.configure(Configs.ElevatorModule.RelevatorConfig, null, null);
         encoder.setPosition(0.0);
         LElevator.set(0);
         RElevator.set(0);
-        // Input = new DigitalInput(0);
 
 
          
@@ -87,14 +84,14 @@ public class Elevator extends SubsystemBase{
         double calcdegree = (1000 * value)/17.66;
         LElevatorPID.setReference(Math.toRadians(calcdegree), ControlType.kPosition);         
     }
+    
+    // public void Elevdegwithwait(Gimbal gimbal,double ele_value,double gimbal_pos){
 
-    public void Elevdegwithwait(Gimbal gimbal,double ele_value,double gimbal_pos){
-
-        if(Math.toDegrees(gimbal.encoder.getPosition()) < gimbal_pos+2 && Math.toDegrees(gimbal.encoder.getPosition()) > gimbal_pos-2){
-            double calcdegree = (1000 * ele_value)/17.66;
-            LElevatorPID.setReference(Math.toRadians(calcdegree), ControlType.kPosition);
-        }
-    }
+    //     if(Math.toDegrees(gimbal.encoder.getPosition()) < gimbal_pos+2 && Math.toDegrees(gimbal.encoder.getPosition()) > gimbal_pos-2){
+    //         double calcdegree = (1000 * ele_value)/17.66;
+    //         LElevatorPID.setReference(Math.toRadians(calcdegree), ControlType.kPosition);
+    //     }
+    // }
     public void setpower(double pow){
         LElevator.set(pow);
         RElevator.set(pow);

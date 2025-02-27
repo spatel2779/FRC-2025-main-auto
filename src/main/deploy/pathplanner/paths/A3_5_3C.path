@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 16.93058504247219,
-        "y": 0.8835526203258304
+        "x": 16.999889138081315,
+        "y": 0.9077958903714372
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 14.1,
-        "y": 2.7
+        "x": 14.45,
+        "y": 2.5
       },
       "prevControl": {
-        "x": 13.602270234644534,
-        "y": 3.0794674409809213
+        "x": 13.923154384381615,
+        "y": 2.8285572316111747
       },
       "nextControl": null,
       "isLocked": false,
@@ -48,7 +48,7 @@
   "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 3.5,
-    "maxAcceleration": 6.0,
+    "maxAcceleration": 5.0,
     "maxAngularVelocity": 540.0,
     "maxAngularAcceleration": 720.0,
     "nominalVoltage": 12.0,
@@ -56,13 +56,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 125.00000000000001
+    "rotation": 135.0
   },
   "reversed": false,
   "folder": "A3_Barge",
   "idealStartingState": {
     "velocity": 0.0,
-    "rotation": 119.99999999999999
+    "rotation": 135.0
   },
   "useDefaultConstraints": false
 }

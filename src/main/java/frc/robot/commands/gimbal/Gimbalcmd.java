@@ -8,10 +8,12 @@ public class Gimbalcmd extends Command{
     public Gimbal gimbal;
     public Integer angle;
     public Timer timer;
+    public double time;
 
-    public Gimbalcmd(Gimbal gim, int deg){
+    public Gimbalcmd(Gimbal gim, int deg, double timetaken){
         this.gimbal = gim;
         this.angle = deg;
+        this.time = timetaken;
         
     }
 
@@ -34,7 +36,7 @@ public class Gimbalcmd extends Command{
 
     @Override
     public boolean isFinished() {
-    if ((Math.toDegrees(gimbal.encoder.getPosition()) < angle +3 && Math.toDegrees(gimbal.encoder.getPosition()) > angle -3)|| timer.get()>2){
+    if ((Math.toDegrees(gimbal.encoder.getPosition()) < angle +3 && Math.toDegrees(gimbal.encoder.getPosition()) > angle -3)|| timer.get()>time){
         System.out.println("Gimbal L3 reached");
         return true;
     }else{

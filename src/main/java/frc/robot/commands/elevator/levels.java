@@ -27,22 +27,23 @@ public class levels extends Command{
     public void initialize() {
         timer = new Timer();
         timer.start();
-
+        ele.setzeropower();
+        gim.gimbalzero();
 
     }
 
     @Override
     public void execute() {
+
+        if(Math.toDegrees(gim.encoder.getPosition())>110){
         gim.gimbaldeg(gimbaldeg);
-        if(timer.get()>time && ((Math.toDegrees(gim.encoder.getPosition())< gimbaldeg +5) && Math.toDegrees(gim.encoder.getPosition())> gimbaldeg-5)){
-            ele.ElevDegree(deg);
-        }
+        // if(timer.get()>time && ((Math.toDegrees(gim.encoder.getPosition())< gimbaldeg +5) && Math.toDegrees(gim.encoder.getPosition())> gimbaldeg-5)){
+        ele.ElevDegree(deg);
         
-
-
-
+        }
     }
 
+// }
     @Override
     public void end(boolean interrupted) {
         gim.gimbalzero();
@@ -53,12 +54,12 @@ public class levels extends Command{
 
     @Override
     public boolean isFinished() {
-        if(Math.toDegrees(ele.encoder.getPosition())<deg+2 && Math.toDegrees(ele.encoder.getPosition())>deg-2){
-            System.out.println("outside the cmd");
-            return true;
-        }else{
+        // if(Math.toDegrees(ele.encoder.getPosition())<deg+2 && Math.toDegrees(ele.encoder.getPosition())>deg-2){
+        //     System.out.println("outside the cmd");
+        //     return true;
+        // }else{
             return false;
-        }
+    
   }
 
     
